@@ -1,0 +1,145 @@
+<html>
+<head>
+    <% include ../include/reporting_header.ejs
+    %>
+
+</head>
+
+</div>
+<div id="bd">
+    <center><h1>Today Report(<script>document.write(Date().substr(0,15));</script>)</h1></center>
+    <hr/>
+    <div class="panel panel-body"><h2><u>Today Booking Stats</u></h2>
+        <table class="table table-hover table-condensed    table-striped table-bordered" >
+            <thead bgcolor="#9b9b9c">
+            <tr>
+                <th style="width: 10px;">#</th>
+                <th>Category</th>
+                <th>Booking %</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="y in rData.data[1]">
+                <td>{{y.i_count}}</td>
+                <td><b>{{y.c_name}}</b>({{y.r_count}}/{{y.r_tot}})</td>
+                <td>
+                    <!-- <div class="progress progress-xs">
+                         <div class="progress-bar "
+                              ng-class="whatClassIsIt((100*y.r_count)/y.r_tot)"
+                              style="width: {{100*y.r_count/y.r_tot| number:2}}%"></div>
+                     </div>-->
+                    <span class="badge "
+                          ng-class="whatClassIsIt((100*y.r_count)/y.r_tot)">{{100*y.r_count/y.r_tot | number:2}}%</span>
+                </td>
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+    <div class="panel panel-body"><h2><u>Today Activity Log</u></h2>
+        <table class="table table-hover table-condensed    table-striped table-bordered">
+            <thead bgcolor="#9b9b9c">
+            <tr>
+                <th>Booking Confirmed</th>
+                <th>Tentive</th>
+                <th>Cancelled</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="y in rData.data[2]">
+                <td>{{y.b}}</td>
+                <td>{{y.t}}</td>
+                <td>{{y.c}}</td>
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+    <div class="panel panel-body"><h2><u>Today Paid Transactions</u></h2>
+        <table
+                class="table table-hover table-condensed    table-striped table-bordered ">
+            <thead style="background-color: #afafb0">
+            <tr bgcolor="#9b9b9c">
+                <th >Booking ID</th>
+                <th>Room Name</th>
+                <th>Customer Name</th>
+                <th>Customer Mobile</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Booking Status</th>
+                <th>Booking Cost</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="r in rData.data[0]"
+                data-target="#roomEditFormModal" data-toggle="modal"
+                ng-click="getBookindDetailBySummaryID(r.summary_id)">
+                <td>{{r.summary_id}}</td>
+                <td>{{r.room_name}}</td>
+                <td>{{r.customer_name}}</td>
+                <td>{{r.customer_mob}}</td>
+                <td>{{r.book_start_date | date : "dd-MM-yyyy"}}</td>
+                <td>{{r.book_end_date | date : "dd-MM-yyyy" }}</td>
+                <td>{{r.description}}</td>
+                <td>{{r.room_cost}}</td>
+
+            </tr>
+
+            </tbody>
+            <tfoot>
+            <td colspan="7"></td>
+            <td><b><i class="fa fa-rupee"></i> {{rData.data[4][0].tot}}</b></td>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="panel panel-body"><h2><u>Today Other Transactions</u></h2>
+        <table
+                class="table table-hover table-condensed    table-striped table-bordered ">
+            <thead style="background-color: #afafb0">
+            <tr bgcolor="#9b9b9c">
+                <th>Booking ID</th>
+                <th>Room Name</th>
+                <th>Customer Name</th>
+                <th>Customer Mobile</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Booking Status</th>
+                <th>Booking Cost</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="r in rData.data[3]"
+                data-target="#roomEditFormModal" data-toggle="modal"
+                ng-click="getBookindDetailBySummaryID(r.summary_id)">
+                <td>{{r.summary_id}}</td>
+                <td>{{r.room_name}}</td>
+                <td>{{r.customer_name}}</td>
+                <td>{{r.customer_mob}}</td>
+                <td>{{r.book_start_date | date : "dd-MM-yyyy"}}</td>
+                <td>{{r.book_end_date | date : "dd-MM-yyyy" }}</td>
+                <td>{{r.description}}</td>
+                <td>{{r.room_cost}}</td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<%
+include ../include/reporting_footer.ejs
+%>
+</html>
+
+
+<script src="../../dist/js/school_custom.js"></script>
+

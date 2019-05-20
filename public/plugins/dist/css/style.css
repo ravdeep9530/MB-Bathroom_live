@@ -1,0 +1,37 @@
+#snackbar {
+    visibility: hidden;
+    min-width: 250px;
+
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    padding-top: 24px;
+    position: fixed;
+
+
+    bottom: 90px;
+    z-index:20100;
+
+
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    -moz-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.req{
+    border: 1px solid #ff4b66;
+}
+#tracks {
+    -webkit-transition: ease 2s; /* Safari */
+    transition: ease 2s;
+}

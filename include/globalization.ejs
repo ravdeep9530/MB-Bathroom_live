@@ -1,0 +1,33 @@
+<html>
+ <div  id="snackbarTop"></div>
+<% var g_str="";
+for(var i=0; i < g_c.length; i++) {
+
+     g_str+=g_c[i].g_str
+
+ }
+
+%>
+<textarea style="display: none;" id="g_str"><%=g_str%></textarea>
+<script>
+
+    function global_load() {
+        var str=document.getElementById("g_str").innerHTML;
+        //alert(str);
+        eval(str);
+
+    }
+
+global_load();
+
+     function toast(t) {
+
+        var x = document.getElementById("snackbarTop");
+        x.innerHTML=t;
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 2500);
+    }
+
+
+</script>
+</html>

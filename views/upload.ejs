@@ -1,0 +1,1562 @@
+<html>
+<head>
+    <% include ../include/header.ejs
+    %>
+
+</head>
+<!-- Main content -->
+
+<div id="load"
+     style="display: none; margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;">
+    <p style="position: absolute; color: White; top: 50%; left: 45%;">
+        Loading, please wait...
+        <img src="dist/img/24.gif">
+    </p>
+</div>
+<div class="content-wrapper">
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+
+
+            <div class="col-lg-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li class="{{a.class}}" ng-repeat="a in tabData.data[0]"><a href="{{a.href}}" id="{{a.id}}"
+                                                                                    ng-click="gs(a.click_method_name)"
+                                                                                    data-toggle="tab">{{a.tab_name}}</a>
+                        </li>
+
+                        <!-- <li class="dropdown">
+                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                 Dropdown <span class="caret"></span>
+                             </a>
+                             <ul class="dropdown-menu">
+                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                 <li role="presentation" class="divider"></li>
+                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                             </ul>
+                         </li>-->
+                        <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <div>
+                                <!-- Horizontal Form -->
+                                <div class="box box-info ">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Person Form</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+
+                                    <div class="col-lg-12">
+                                        <br/>
+                                    </div>
+                                    <div class="">
+                                        <center>
+                                            <div class="col-lg-3 col-lg-offset-4">
+                                                <img src="<%= dp %>" class="img-thumbnail img-responsive">
+                                            </div>
+                                        </center>
+                                        <form action="fileupload" method="post" enctype="multipart/form-data">
+                                            <div class="form-group col-lg-12">
+
+
+                                                <div class="input-group col-lg-3 col-lg-offset-4">
+
+
+                                                    <input REQUIRED name="filetoupload" class="form-control"
+
+                                                           type="file">
+                                                    <span class="input-group-btn">
+                                                                <button type="submit" name="search"
+                                                                        id="find"
+                                                                        class="btn btn-flat"><i
+                                                                            class="fa fa-search"></i> upload
+                                                                </button>
+
+
+                                                            </span>
+
+
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <hr/>
+                                    </div>
+                                    <form class="form-horizontal" id="personForm" action="/uploadLang" method="post">
+                                        <div class="box-body">
+                                            <div class="form-group col-lg-4">
+                                                <label for="inputEmail3" class="col-sm-2 control-label">Person
+                                                    Name</label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="Text" required class="form-control col-lg-2"
+                                                           name="Pname"
+                                                           id="inputEmail3" placeholder="Person Name"
+                                                           value="{{personData.name}}">
+                                                    <input type="text" hidden name="dp" value="<%= dp %>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label for="inputEmail3" class="col-sm-2 control-label">Mobile
+                                                    Number</label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="Text" maxlength="10" minlength="10" required
+                                                           class="form-control col-lg-2" name="Pmob"
+                                                           id="inputEmail3" placeholder="Mobile Number">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label for="inputEmail3" class="col-sm-2 control-label">Father
+                                                    Name</label>
+
+                                                <div class="col-sm-10">
+                                                    <input type="Text" required
+                                                           class="form-control col-lg-2" name="Pfname"
+                                                           id="inputEmail3" placeholder="Father Name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label for="inputEmail3" class="col-sm-2 control-label">Address</label>
+
+                                                <div class="col-sm-10">
+                                                <textarea class="form-control col-lg-2" required name="Paddress"
+                                                          id="inputEmail3" placeholder="Address"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label for="inputEmail3" class="col-sm-2 control-label">Additional
+                                                    Note</label>
+
+                                                <div class="col-sm-10">
+                                                <textarea class="form-control col-lg-2" name="Padditional"
+                                                          id="inputEmail3" placeholder="Additional Note"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-4">
+                                                <label for="inputEmail3" class="col-sm-2 control-label">Loan
+                                                    Type</label>
+
+                                                <div class="col-sm-10">
+                                                    <select id="loanType" required class="form-control"
+                                                            name="Ploan_type">
+                                                        <option value="-1">--Select One--
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <!-- /.box-body -->
+                                        <div class="box-footer">
+                                            <button type="submit" class="btn btn-info pull-left">Save <i
+                                                        class="fa fa-save"></i></button>
+                                        </div>
+                                        <!-- /.box-footer -->
+                                    </form>
+
+                                </div>
+
+                            </div>
+                            <div class="col-lg-12">
+                                <hr/>
+                            </div>
+                            <div class="table-responsive table-hover col-lg-12 ">
+                                <table id="tab_lang1"
+                                       class="table table-bordered table-condensed table-hover table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Acc No.</th>
+                                        <th>Person Name</th>
+                                        <th>Father Name</th>
+                                        <th>Address</th>
+                                        <th>IsActive</th>
+                                        <th>Loan Type</th>
+                                        <th>Note</th>
+                                        <th>Mobile No.</th>
+                                        <th>Action</th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody id="langTbody">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab_2">
+                            <div class="box box-info ">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Loan Form</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                <form class="form-horizontal " id="loan" action="/insertLoan" method="post">
+                                    <div class="box-body ">
+
+
+                                        <div class="form-horizontal ">
+                                            <div class="panel panel-success">
+                                                <div class="panel-heading">
+                                                    <div class="input-group col-lg-4">
+
+                                                        <input REQUIRED name="q" id="acc" class="form-control"
+                                                               placeholder="Enter Account Number" ng-model="q"
+                                                               type="text">
+                                                        <span class="input-group-btn">
+                                                                <button type="button" ng-click="search(q)" name="search"
+                                                                        id="find"
+                                                                        class="btn btn-flat"><i
+                                                                            class="fa fa-search"></i> Find
+                                                                </button>
+
+
+                                                            </span>
+
+
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h1 ng-if="pData.data[0].id==null" style="color: #ff0f00;">No Record Found..</h1>
+                                                </div>
+                                                <div class="panel-body" ng-hide="pData.data[0].id==null">
+                                                    <center>
+
+                                                        <div class="col-lg-3 col-lg-offset-2">
+                                                            <img src="{{pData.data[0].photo_url}}"
+                                                                 class="img-thumbnail img-responsive">
+                                                        </div>
+                                                    </center>
+
+
+                                                    <div class="form-group col-lg-4"  ng-repeat="f in frData.data[1]">
+                                                        <label for="inputEmail3" ng-if="f.isHidden==0" class="col-sm-2 control-label">{{f.caption_name}}</label>
+
+                                                        <div class="col-sm-10">
+
+                                                            <input ng-if="f.type_name=='text'" ng-hide="f.isHidden" type="{{f.type_name}}" maxlength="{{f.field_max_length}}" minlength="{{f.field_max_length}}"
+                                                                  ng-required="{{f.required_id}}" ng-readonly="{{f.field_readonly}}"
+                                                                   class="form-control col-lg-2" name="{{f.field_name}}"
+                                                                   id="{{f.field_id}}" ng-value="{{f.field_value}}"
+                                                                   placeholder="{{f.field_placeholder}}">
+                                                            <textarea ng-if="f.type_name=='textarea'" ng-hide="f.isHidden" maxlength="{{f.field_max_length}}" minlength="{{f.field_max_length}}"
+                                                                  ng-required="{{f.required_id}}" ng-readonly="{{f.field_readonly}}"
+                                                                   class="form-control col-lg-2" name="{{f.field_name}}"
+                                                                   id="{{f.field_id}}" ng-value="{{f.field_value}}"
+                                                                      placeholder="{{f.field_placeholder}}"></textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default" ng-hide="pData.data[0].id==null">
+                                                <div class="panel-heading">
+                                                    <h4>Loan</h4>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="col-lg-12">
+                                                        <hr/>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-lg-4 control-label">interst
+                                                            Rate</label>
+
+                                                        <div class="col-lg-7">
+                                                            <input type="number" step="0.01" ng-model="rate" min="1"
+                                                                   max="10" name="Lrate" class="form-control"
+                                                                   id="inputEmail3"
+                                                                   placeholder="Interst Rate">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-lg-4 control-label">File
+                                                            Charge</label>
+
+                                                        <div class="col-lg-7">
+                                                            <input type="number" step="0.01" ng-model="file_charge"
+                                                                   name="Lfile_charge" class="form-control"
+                                                                   id="inputEmail3"
+                                                                   placeholder="File Charge">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-lg-4 control-label">Total
+                                                            Amount</label>
+
+                                                        <div class="col-lg-7">
+                                                            <input type="number" ng-model="tam" min="1" name="Lamt"
+                                                                   class="form-control" id="inputEmail3"
+                                                                   placeholder="Total Amount">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-lg-4 control-label">Number
+                                                            of
+                                                            Installments</label>
+
+                                                        <div class="col-lg-7">
+                                                            <input type="number" ng-model="tim" maxlength="100"
+                                                                   min="1"
+                                                                   name="Lno_instl" class="form-control"
+                                                                   id="inputEmail3"
+                                                                   placeholder="Number">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 panel-body panel" style="height: auto;">
+                                                        <label for="inputEmail3"
+                                                               style="border: 0; font-size: 2em; height: auto; color: #ff0c4c;"
+                                                               class="col-lg-10 control-label">Installment
+                                                            Amount</label>
+
+                                                        <div class="col-lg-10" style="height: auto;">
+                                                            <input type="number"
+                                                                   style="border: 0; font-size: 3em; height: auto;"
+                                                                   maxlength="1" required readonly
+                                                                   id="iam"
+                                                                   value="{{(tam+((tim*rate*tam)/100))/tim}}"
+                                                                   name="Linstl_amt"
+                                                                   class="form-control" id="inputEmail3"
+                                                                   placeholder="Total Amount">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 panel-body panel" style="height: auto;">
+                                                        <label for="inputEmail3"
+                                                               style="border: 0; font-size: 2em; height: auto; color: #ff0c4c;"
+                                                               class="col-lg-10 control-label">Payable
+                                                            Amount</label>
+
+                                                        <div class="col-lg-10" style="height: auto;">
+                                                            <input type="number"
+                                                                   style="border: 0; font-size: 3em; height: auto;"
+                                                                   required readonly
+                                                                   id="fam"
+                                                                   value="{{tam-file_charge}}"
+                                                                   name="Lpay_amt"
+                                                                   class="form-control" id="inputEmail3"
+                                                                   placeholder="Total Amount">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <hr/>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-sm-5 control-label">Installment
+                                                            Cycle</label>
+
+                                                        <div class="col-lg-7">
+                                                            <select class="form-control" name="Lcycle"
+                                                                    ng-model="timw.type"
+                                                                    ng-options='option.cycle as option.name for option in myData'>
+                                                            </select></div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-sm-5 control-label"><b>Fine
+                                                                Activate</b></label>
+
+                                                        <div class="col-lg-7">
+                                                            <input type="checkbox" name="Lfineisactive" value="1"
+                                                                   class=""/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-sm-5 control-label">Due
+                                                            Date</label>
+
+                                                        <div class="col-lg-7">
+                                                            <div class="input-group date" data-provide="datepicker">
+                                                                <input type="text" name="Ldue_date" required
+                                                                       class="form-control">
+                                                                <div class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-th"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    $('#dueDate').datepicker();</script>
+
+
+                                            </div>
+
+                                            <!-- /.box-header -->
+                                            <!-- form start -->
+
+
+                                            <!-- /.box-body -->
+                                            <div class="box-footer">
+                                                <button type="submit" class="btn btn-info pull-right">Save</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                                <!-- /.box-footer -->
+
+                            </div>
+
+
+                        </div>
+                        <div class="tab-pane" id="tab_3">
+                            <div class="box box-info ">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Deposit Loan Form</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                <form class="form-horizontal " id="loan" action="/insertLoan" method="post">
+                                    <div class="box-body ">
+
+
+                                        <div class="form-horizontal ">
+                                            <div class="panel panel-success">
+                                                <div class="panel-heading">
+                                                    <div class="input-group col-lg-4">
+
+                                                        <input REQUIRED name="q" id="accLoan" class="form-control"
+                                                               placeholder="Enter Account Number" ng-model="q"
+                                                               type="text">
+                                                        <span class="input-group-btn">
+                                                                <button type="button" ng-click="searchLoan(q)"
+                                                                        name="search"
+                                                                        id="findLoanDeposit"
+                                                                        class="btn btn-flat"><i
+                                                                            class="fa fa-search"></i> Find
+                                                                </button>
+
+
+                                                            </span>
+
+
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <h1 ng-if="lData.data[0].id==null" style="color: #ff0f00;">No Record Found..</h1>
+                                                </div>
+                                                <div class="panel-body" ng-hide="lData.data[0].id==null">
+                                                    <center>
+                                                        <div class="col-lg-3 col-lg-offset-2"
+                                                             ng-show="lData.data[0].id!=null">
+                                                            <img src="{{lData.data[0].photo_url===''?'/uploads/profileBack.jpg':lData.data[0].photo_url}}"
+                                                                 style="height: 200px;"
+                                                                 class="img-thumbnail img-responsive">
+                                                        </div>
+                                                    </center>
+
+                                                    <div class="form-group col-lg-4">
+                                                        <label for="inputEmail3" class="col-sm-2 control-label">Person
+                                                            Name</label>
+                                                        <input type="text" name="Pid" hidden required
+                                                               value="{{lData.data[0].id}}">
+                                                        <input type="text" name="loan_type_id" hidden required
+                                                               value="{{lData.data[0].loan_type_id}}">
+                                                        <div class="col-sm-10">
+                                                            <input type="Text" required readonly
+                                                                   class="form-control col-lg-2"
+                                                                   name="Pname"
+                                                                   id="inputEmail3" value="{{lData.data[0].name}}"
+                                                                   placeholder="Person Name">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-lg-4">
+                                                        <label for="inputEmail3" class="col-sm-2 control-label">Mobile
+                                                            Number</label>
+
+                                                        <div class="col-sm-10">
+                                                            <input type="Text" maxlength="10" minlength="10"
+                                                                   required readonly
+                                                                   class="form-control col-lg-2" name="Pmob"
+                                                                   id="inputEmail3" value="{{lData.data[0].mob}}"
+                                                                   placeholder="Mobile Number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group col-lg-4">
+                                                        <label for="inputEmail3"
+                                                               class="col-sm-2 control-label">Address</label>
+
+                                                        <div class="col-sm-10">
+                                                <textarea class="form-control col-lg-2" required name="Paddress"
+                                                          id="inputEmail3" READONLY placeholder="Address">{{lData.data[0].address}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default" ng-repeat="loan in lData.data">
+                                                <div class="panel-heading">
+                                                    <span style="font-size: 1.5em;">Loan ID: <b>{{loan.loan_id}}</b></span>
+                                                    <i class="fa fa-trash pull-right"
+                                                       ng-click="deleteLoanByloanID(loan.loan_id,lData.data[0].id)"
+                                                       style="cursor:pointer; font-size: 1.5em;"></i><i class="fa fa-book pull-right" data-target="#installModal"
+                                                       ng-click="installmentsLoanByloanID(loan.loan_id)" data-toggle="modal"
+                                                       style="cursor:pointer; font-size: 1.5em;"></i>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="col-lg-12">
+                                                        <hr/>
+                                                    </div>
+                                                    <div class="col-lg-3" style="display: none;">
+                                                        <label for="inputEmail3" class="col-lg-4 control-label">interst
+                                                            Rate</label>
+
+                                                        <div class="col-lg-7">
+                                                            <input type="number" ng-model="loan.interst_rate"
+                                                                   readonly name="Lrate" class="form-control"
+                                                                   id="inputEmail3"
+                                                                   placeholder="Interst Rate">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-lg-4 control-label">File
+                                                            Charge</label>
+
+                                                        <div class="col-lg-7">
+                                                            <input ng-model="loan.file_charge" type="number" readonly
+                                                                   name="Lfile_charge" class="form-control"
+                                                                   id="inputEmail3"
+                                                                   placeholder="File Charge">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-lg-4 control-label">Total
+                                                            Amount</label>
+
+                                                        <div class="col-lg-7">
+                                                            <input type="number" readonly ng-model="loan.loan_amount"
+                                                                   name="Lamt"
+                                                                   class="form-control" id="inputEmail3"
+                                                                   placeholder="Total Amount">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-lg-4 control-label">Number
+                                                            of
+                                                            Installments</label>
+
+                                                        <div class="col-lg-7">
+                                                            <input type="number" readonly
+                                                                   ng-model="loan.installment_number" maxlength="100"
+                                                                   min="1"
+                                                                   name="Lno_instl" class="form-control"
+                                                                   id="inputEmail3"
+                                                                   placeholder="Number">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6 panel-body panel" style="height: auto;">
+                                                        <label for="inputEmail3"
+                                                               style="border: 0; font-size: 1.2em; height: auto; color: #ff0c4c;"
+                                                               class="col-lg-10 control-label">Installment
+                                                            Amount</label>
+
+                                                        <div class="col-lg-10" style="height: auto;">
+                                                            <input type="number"
+                                                                   style="border: 0; font-size: 2em; height: auto;"
+                                                                   maxlength="1" required readonly
+                                                                   id="iam"
+                                                                   ng-model="(loan.loan_amount+((loan.installment_number*loan.interst_rate*loan.loan_amount)/100))/loan.installment_number"
+                                                                   name="Linstl_amt"
+                                                                   class="form-control" id="inputEmail3"
+                                                                   placeholder="Total Amount">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6 panel-body panel" style="height: auto;">
+                                                        <label for="inputEmail3"
+                                                               style="border: 0; font-size: 1.2em; height: auto; color: #ff0c4c;"
+                                                               class="col-lg-10 control-label">Payable
+                                                            Amount</label>
+
+                                                        <div class="col-lg-10" style="height: auto;">
+                                                            <input type="number"
+                                                                   style="border: 0; font-size: 2em; height: auto;"
+                                                                   required readonly
+                                                                   id="fam"
+                                                                   value="{{loan.loan_amount-loan.file_charge}}"
+                                                                   name="Lpay_amt"
+                                                                   class="form-control" id="inputEmail3"
+                                                                   placeholder="Total Amount">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <hr/>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-sm-5 control-label">Installment
+                                                            Cycle</label>
+
+                                                        <div class="col-lg-7">
+                                                            <select class="form-control" disabled name="Lcycle"
+                                                                    ng-model="loan.loan_cycle_id"
+                                                                    ng-options='option.cycle as option.name for option in myData'>
+                                                            </select></div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-sm-5 control-label"><b>Fine
+                                                                Activate</b></label>
+
+                                                        <div class="col-lg-7">
+                                                            <input type="checkbox" disabled
+                                                                   ng-checked="loan.fine_isActive" name="Lfineisactive"
+                                                                   class=""/>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-3">
+                                                        <label for="inputEmail3" class="col-sm-5 control-label">Due
+                                                            Date</label>
+
+                                                        <div class="col-lg-7">
+                                                            <input type="text" ng-model="loan.due_date" readonly
+                                                                   name="Ldue_date" required
+                                                                   class="form-control">
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <hr/>
+                                                    </div>
+                                                    <div class="col-lg-4 panel-body panel" style="height: auto;"
+                                                         data-ng-init="getLoanDetail(loan.loan_id)">
+                                                        <label for="inputEmail3"
+                                                               style="border: 0; font-size: 1.2em; height: auto; color: #419056;"
+                                                               class="col-lg-10 control-label">Received Installments
+                                                        </label>
+
+                                                        <div class="col-lg-10" style="height: auto;">
+                                                            <input type="number"
+                                                                   style="border: 0; font-size: 2em; height: auto;"
+                                                                   maxlength="1" required readonly
+                                                                   id="iam"
+                                                                   ng-model="ldData[loan.loan_id].data[0][0].tcount"
+                                                                   name="Linstl_amt"
+                                                                   class="form-control" id="inputEmail3"
+                                                                   placeholder="Total Amount">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 panel-body panel" style="height: auto;">
+                                                        <label for="inputEmail3"
+                                                               style="border: 0; font-size: 1.2em; height: auto; color:#419056;"
+                                                               class="col-lg-10 control-label">Received
+                                                            Amount</label>
+
+                                                        <div class="col-lg-10" style="height: auto;">
+                                                            <input type="number"
+                                                                   style="border: 0; font-size: 2em; height: auto;"
+                                                                   maxlength="1" required readonly
+                                                                   id="iam"
+                                                                   ng-model="ldData[loan.loan_id].data[0][0].tot"
+                                                                   name="Linstl_amt"
+                                                                   class="form-control" id="inputEmail3"
+                                                                   placeholder="Total Amount">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 panel-body panel" style="height: auto;">
+                                                        <label for="inputEmail3"
+                                                               style="border: 0; font-size: 1.2em; height: auto; color:#901906;"
+                                                               class="col-lg-10 control-label">Pending
+                                                            Amount</label>
+
+                                                        <div class="col-lg-10" style="height: auto;">
+                                                            <input type="number"
+                                                                   style="border: 0; font-size: 2em; height: auto;"
+                                                                   maxlength="1" required readonly
+                                                                   id="iam"
+                                                                   ng-model="ldData[loan.loan_id].data[0][0].pend"
+                                                                   name="Linstl_amt"
+                                                                   class="form-control" id="inputEmail3"
+                                                                   placeholder="Pending Amount">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <hr/>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="col-lg-6" >
+                                                            <div class="panel panel-success">
+                                                                <div class="panel-heading">
+                                                                    <h4><b>Deposit Installment</b></h4>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <div class="col-lg-11">
+                                                                        <form id="{{loan.loan_id}}" method="post">
+                                                                            <div class="col-lg-6">
+
+                                                                                <label style="border: 0; "
+                                                                                       for="inputEmail3"
+                                                                                       class="col-sm-5 control-label">Installment
+                                                                                    Amount</label>
+                                                                                <div class="col-sm-10">
+                                                                                    <input type="number" min="1"
+                                                                                           max="100000"
+                                                                                           required
+                                                                                           style=" height: auto;"
+                                                                                           ng-attr-id="{{'Iamt'+loan.loan_id}}"
+                                                                                           name="Damt"
+                                                                                           class="form-control"
+                                                                                           placeholder="Enter Amount">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+
+                                                                                <label
+                                                                                        for="inputEmail3"
+                                                                                        class="col-sm-3 control-label">Note</label>
+                                                                                <div class="col-sm-9"
+                                                                                     style="height: auto;">
+                                                                    <textarea
+                                                                            class="form-control "
+                                                                            style="height: 90px; width: 100%;"
+                                                                            placeholder="Note"
+                                                                            ng-attr-id="{{'Inote'+loan.loan_id}}"></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                            <input type="hidden">
+                                                                        </form>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="panel-footer">
+                                                                    <button type="button" ng-disabled="ldData[loan.loan_id].data[0][0].pend<=0"
+                                                                            ng-click="installDeposit(loan.loan_id)"
+                                                                            class="btn btn-success btn-block">
+                                                                        Deposit
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="panel panel-danger">
+                                                                <div class="panel-heading"
+                                                                     data-ng-init="getfineByLoanID(loan.loan_id)">
+                                                                    <h4 ng-click="getTodayReport(-loan.loan_id)"
+                                                                        style="cursor: pointer;" data-toggle="modal"
+                                                                        data-target="#fineModal"><b>Deposit Fine</b>
+                                                                        <span class="pull-right"><i
+                                                                                    class="fa fa-rupee"></i> <b>{{fdData[loan.loan_id].data[0].ftot}}</b></span>
+                                                                    </h4>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <div class="col-lg-11">
+                                                                        <form id="fine{{loan.loan_id}}" method="post">
+                                                                            <div class="col-lg-6">
+
+                                                                                <label style="border: 0; "
+                                                                                       for="inputEmail3"
+                                                                                       class="col-sm-5 control-label"
+                                                                                >Fine
+                                                                                    Amount</label>
+
+                                                                                <div class="col-sm-10">
+                                                                                    <input type="number" min="1"
+                                                                                           max="100000"
+                                                                                           required
+                                                                                           style=" height: auto;"
+                                                                                           ng-attr-id="{{'Famt'+loan.loan_id}}"
+                                                                                           name="Damt"
+                                                                                           class="form-control"
+                                                                                           placeholder="Enter Amount">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-lg-6">
+
+                                                                                <label
+                                                                                        for="inputEmail3"
+                                                                                        class="col-sm-3 control-label">Note</label>
+                                                                                <div class="col-sm-9"
+                                                                                     style="height: auto;">
+                                                                    <textarea
+                                                                            class="form-control "
+                                                                            style="height: 90px; width: 100%;"
+                                                                            placeholder="Note"
+                                                                            ng-attr-id="{{'Fnote'+loan.loan_id}}"
+                                                                    ></textarea>
+
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="panel-footer">
+                                                                    <button type="button"
+
+                                                                            ng-click="fineDeposit(loan.loan_id)"
+                                                                            class="btn btn-success btn-block">
+                                                                        Deposit
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <hr/>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading">
+                                                                <h4><b>Installments Summary</b></h4>
+                                                            </div>
+                                                            <div class="panel-body">
+                                                                <div class="col-lg-11 table-responsive"
+                                                                     data-ng-init="getInstallmentsByID(loan.loan_id)">
+                                                                    <table class="table table-striped table-hover table-condensed">
+                                                                        <tr>
+                                                                            <th>Recipt Number</th>
+                                                                            <th>Loan ID</th>
+                                                                            <th>Installment Amount</th>
+                                                                            <th>Date</th>
+                                                                            <th>Deposit By</th>
+                                                                            <th>Note</th>
+                                                                            <th>Action</th>
+                                                                        </tr>
+                                                                        <tr ng-repeat="o in IData[loan.loan_id].data"
+                                                                            ng-style="{'background-color': colors[o.installment_type]}">
+
+                                                                            <td>{{o.installment_id}}</td>
+                                                                            <td>{{o.loan_id}}</td>
+                                                                            <td><i class="fa fa-rupee"></i>
+                                                                                {{o.installment_amount}}
+                                                                            </td>
+                                                                            <td>{{o.installment_deposit_date}}</td>
+                                                                            <td>{{o.name}}</td>
+                                                                            <td>{{o.note}}</td>
+                                                                            <td><i class="fa fa-print"
+                                                                                   ng-click="printInstall(o.installment_id)"
+                                                                                   style="cursor: pointer;"></i></td>
+                                                                        </tr>
+                                                                        <!--<tr  ng-repeat="o in IData[loan.loan_id].data" id="{{o.installment_id}}"-->
+                                                                        <!--ng-style="{'background-color': colors[o.installment_type]}">-->
+
+                                                                        <!--<td>Recipt Number:</td><td  >{{o.installment_id}}</td>-->
+                                                                        <!--<td>Loan Number:</td><td>{{o.loan_id}}</td>-->
+                                                                        <!--<td>Deposit Amount:</td><td><i class="fa fa-rupee"></i>-->
+                                                                        <!--{{o.installment_amount}}-->
+                                                                        <!--</td>-->
+                                                                        <!--<td>Deposit Date: </td><td>{{o.installment_deposit_date}}</td>-->
+                                                                        <!--<td>Deposit By: </td><td>{{o.name}}</td>-->
+                                                                        <!--<td>Additional Note:</td><td>{{o.note}}</td>-->
+                                                                        <!--</tr>-->
+
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <script>
+                                                    $('#dueDate').datepicker();</script>
+
+
+                                            </div>
+
+                                            <!-- /.box-header -->
+                                            <!-- form start -->
+
+
+                                            <!-- /.box-body -->
+
+                                        </div>
+
+                                    </div>
+                                </form>
+                                <!-- /.box-footer -->
+
+                            </div>
+
+
+                        </div>
+                        <div class="tab-pane " id="tab_4">
+                            <div class="box box-info ">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"><b>Incoming Report MonthWise</b></h3>
+                                </div>
+
+                                <div class=" box-body">
+
+                                    <div class="box-body chart-responsive" id="bc">
+                                        <div class="chart" id="bar-chart" style="height: 300px; "></div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                </div>
+                                <!-- /.box -->
+
+
+                                <!-- /.box-header -->
+                                <!-- form start -->
+                                <!-- <table class="col-lg-10 table table-responsive">
+                                     <tbody>
+                                     <form class="form-horizontalanglangl" id="trackForm" action="/uploadTag"
+                                           method="post">
+                                         <div class="box-body">
+
+                                             <tr class="col-lg-12">
+                                                 <td>
+                                                     <div class="form-group">
+
+                                                         <div class="col-sm-10">
+                                                             <select name="tLang" id="tl" class="form-control">
+
+                                                             </select>
+
+                                                         </div>
+
+                                                     </div>
+                                                 </td>
+                                                 <td>
+                                                     <div class="form-group">
+                                                         <label for="" class="col-sm-4 control-label">Track Name</label>
+
+                                                         <div class="col-sm-10">
+                                                             <input type="text" name="tName" required
+                                                                    class="form-control req" id="tn"
+                                                                    placeholder="Track Name">
+                                                         </div>
+                                                     </div>
+                                                 </td>
+                                                 <td>
+                                                     <div class="form-group">
+                                                         <label for="inputEmail3" class="col-sm-4 control-label">Artist
+                                                             Name</label>
+
+                                                         <div class="col-sm-10">
+                                                             <input type="text" name="arName" required
+                                                                    class="form-control req" id="arn"
+                                                                    placeholder="Artist Name">
+                                                         </div>
+                                                     </div>
+                                                 </td>
+                                                 <td>
+                                                     <div class="form-group">
+                                                         <label for="#td" class="col-sm-4 control-label">Track
+                                                             Duration</label>
+
+                                                         <div class="col-sm-10">
+                                                             <input type="text" name="tDuration" class="form-control"
+                                                                    id="td"
+                                                                    placeholder="Track Duration">
+                                                         </div>
+                                                     </div>
+                                                 </td>
+                                             </tr>
+
+                                             <tr class="col-lg-12">
+                                                 <td>
+                                                     <div class="form-group">
+                                                         <label for="#tc" class="col-sm-4 control-label">Track
+                                                             Category</label>empty()
+
+                                                         <div class="col-sm-10">
+                                                             <select name="tCategory" class="form-control req" id="tc">
+                                                             </select>
+                                                         </div>
+                                                     </div>
+                                                 </td>
+                                                 <td>
+                                                     <div class="form-group">
+                                                         <label for="inputEmail3" class="col-sm-4 control-label">Album
+                                                             Name</label>
+
+                                                         <div class="col-sm-10">
+                                                             <input type="text" name="alName" required
+                                                                    class="form-control req" id="aln"
+                                                                    placeholder="Album Name">
+                                                             <label for="" class="col-sm-4 control-label">Track
+                                                                 Language</label>
+                                                         </div>
+                                                     </div>
+                                                 </td>
+                                                 <td>
+                                                     <div class="form-group">
+                                                         <label for="inputEmail3" class="col-sm-4 control-label">Track
+                                                             Genre</label>
+                                                         <div class="col-sm-10">
+                                                             <input type="text" name="genre" required
+                                                                    class="form-control req" id="alg"
+                                                                    placeholder="Genre">
+
+                                                         </div>
+                                                     </div>
+                                                 </td>
+                                                 <td>
+                                                     <div class="form-group">
+                                                         <label for="#tdes" class="col-sm-4 control-label">Music
+                                                             Director</label>
+
+                                                         <div class="col-sm-10">
+                                                             <input type="text" name="tDescription" class="form-control"
+                                                                    id="tdes" placeholder="Music Director">
+
+                                                         </div>
+                                                     </div>
+                                                 </td>
+                                             </tr>
+                                             <tr class="col-lg-12">
+                                                 <td>
+                                                     <div class="form-group">
+                                                         <label for="#tdes"
+                                                                class="col-sm-4 control-label">Lyricist</label>
+
+                                                         <div class="col-sm-10">
+                                                             <input type="text" name="tLyric" class="form-control"
+                                                                    id="tlyric" placeholder="Lyricset">
+
+                                                         </div>
+                                                     </div>
+                                                 </td>
+                                                 <td>
+                                                     <div class="form-group">
+                                                         <label for="#tdes" class="col-sm-4 control-label">Year</label>
+
+                                                         <div class="col-sm-10">
+                                                             <input type="text" name="tYear" class="form-control"
+                                                                    id="tyear"
+                                                                    placeholder="Year">
+
+                                                         </div>
+                                                     </div>
+                                                 </td>
+                                                 <td>
+                                                     <div class="form-group">
+                                                         <label for="#tbeat" class="col-sm-4 control-label">Beat</label>
+
+                                                         <div class="col-sm-10">
+                                                             <input type="number" name="tBeat" max="10" min="0" required
+                                                                    class="form-control req" id="tbeat"
+                                                                    placeholder="Beat">
+
+                                                         </div>
+                                                     </div>
+                                                 </td>
+                                                 <td>
+                                                     <div class="form-group">
+                                                         <label for="#tbeat" class="col-sm-4 control-label">Tempo</label>
+
+                                                         <div class="col-sm-10">
+                                                             <input type="number" name="tTempo" max="10" min="0" required
+                                                                    class="form-control req" id="tteamo"
+                                                                    placeholder="Tempo">
+                                                             <textarea name="tTags" hidden id="Ttag"></textarea>
+                                                         </div>
+                                                     </div>
+                                                 </td>
+                                             </tr>
+
+                                             <tr>
+                                                 <td>
+                                                     <div class="form-group">
+                                                         <div id="tagDiv"
+                                                              class="col-lg-12 panel-body panel-heading panel ">
+                                                         </div>
+                                                     </div>
+                                                 </td>
+                                             </tr>
+                                             <tr class="col-lg-12">
+                                                 <td>
+
+                                                     <label for="#tdes" class="col-sm-4 control-label">Tags</label>
+
+                                                     <div class="col-sm-10">
+                                                         <div class="col-sm-6">
+                                                             <select name="tags" class=" control-form" id="tg"
+                                                                     onchange="addTag()"
+                                                                     class="form-control">
+
+                                                             </select></div>
+                                                         <input type="text" name="tID" hidden
+                                                                id="tid"/>
+                                                         &lt;!&ndash; <div class="col-sm-4">
+                                                              <button type="button" onclick="addTag()" class="btn btn-adn pull-right">Add Tag</button>
+                                                          </div>&ndash;&gt;
+                                                     </div>
+
+
+                                                 </td>
+
+                                             </tr>
+
+
+                                         </div>
+                                         &lt;!&ndash; /.box-body &ndash;&gt;
+                                         <tr>
+                                             <td>
+                                                 <div class="box-footer" id="inFooter">
+                                                     <button type="submit" class="btn btn-info btn-lg "
+                                                             style="padding-left: 10px; padding-right: 10px;">Save Track
+                                                     </button>
+                                                 </div>
+                                                 <div id="upFooter" style="display: none;" class="box-footer">
+                                                     <button type="submit" class="btn btn-success btn-lg "
+                                                             style="padding-left: 10px; padding-right: 10px;">Update
+                                                         Track
+                                                     </button>
+                                                     <button type="button" class="btn btn-danger btn-lg "
+                                                             onclick="cancel()"
+                                                             style="padding-left: 10px; padding-right: 10px;">Cancel
+                                                     </button>
+                                                 </div>
+                                             </td>
+                                         </tr>
+                                         &lt;!&ndash; /.box-footer &ndash;&gt;
+                                     </form>
+                                     </tbody>
+                                 </table>-->
+
+
+                                <div class="col-lg-12">
+                                    <hr/>
+                                    <div class="col-lg-12 ">
+                                        <div class=" panel panel-default">
+                                            <div class="panel-heading">
+
+                                                Generatr Report
+                                            </div>
+                                            <div class="panel-body">
+
+                                                <div class=" date col-lg-3 date" data-provide="datepicker">
+                                                    <input type="text" id="fr" class="form-control">
+                                                    <div class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-th"> FROM</span>
+                                                    </div>
+                                                </div>
+                                                <div class="date col-lg-3 date" rt
+                                                     data-provide="datepicker">
+                                                    <input type="text" id="to" class="form-control">
+                                                    <div class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-th"> TO</span>
+                                                    </div>
+                                                </div>
+                                                <div class="date col-lg-3 ">
+                                                    <button ng-click="getDateReport()" class="btn btn-lg btn-danger">
+                                                        Generate Report
+                                                    </button>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <hr/>
+                                                </div>
+                                                <div class="col-lg-12 table-responsive">
+                                                    <table style="border-color: #901906;"
+                                                           class="table table-condensed   table-striped table-bordered ">
+                                                        <thead>
+                                                        <th>Receipt Number</th>
+                                                        <th>Acc No</th>
+                                                        <th>Name</th>
+
+                                                        <th>Deposit Date</th>
+                                                        <th>Deposit By</th>
+                                                        <th>Installment Type</th>
+                                                        <th>None</th>
+                                                        <th>I Amount</th>
+                                                        <th>Actual I Amt</th>
+                                                        <th>Profit</th>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr ng-repeat="r in rData.data[0]"
+                                                            ng-style="{'background-color': colors[r.l_p]}">
+                                                            <td>{{r.installment_id}}</td>
+                                                            <td>{{r.pid}}</td>
+                                                            <td>{{r.pname}}</td>
+
+                                                            <td>{{r.installment_deposit_date}}</td>
+                                                            <td>{{r.uname}}</td>
+                                                            <td>{{r.itype}}</td>
+                                                            <td>{{r.note}}</td>
+                                                            <td><i class="fa fa-rupee"> </i> {{r.installment_amount}}
+                                                            </td>
+                                                            <td><i class="fa fa-rupee"> </i> {{r.act_iamt}}</td>
+                                                            <td><i class="fa fa-rupee"> </i> {{r.profit}}</td>
+                                                        </tr>
+                                                        <tr ng-repeat="r in rData.data[1]">
+                                                            <td style="border-color: #000000;" colspan="7"></td>
+                                                            <td style="border-color: #000000;"><h3><b><i
+                                                                                class="fa fa-rupee"> </i> {{r.tot}}</b>
+                                                                </h3></td>
+                                                            <td style="border-color: #000000;"><h3><b><i
+                                                                                class="fa fa-rupee"> </i>
+                                                                        {{r.tot_act_iamt}}</b></h3></td>
+                                                            <td style="border-color: #000000;"><h3><b><i
+                                                                                class="fa fa-rupee"> </i>
+                                                                        {{r.tot_profit}}</b></h3></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <!--<div class="table table-responsive">
+                                <table id="tab_Track" class="table table-bordered  table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>S No.</th>
+                                        <th>Track Name</th>
+                                        <th>Track Category</th>
+                                        <th>Track Language</th>
+                                        <th>Artist</th>
+                                        <th>Genre</th>
+                                        <th>Tags</th>
+                                        <th>Beat</th>
+                                        <th>Tempo</th>
+                                        <th>IsActive</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody id="trackTbody">
+                                    </tbody>
+                                </table>
+                            </div>-->
+
+                        </div>
+                        <div class="tab-pane " id="tab_5">
+                            <div class="box box-info ">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"><b>Defaulters List</b></h3>
+                                </div>
+
+                                <div class=" box-body">
+                                    <div class="col-lg-12 table-responsive">
+                                        <table style="border-color: #901906;"
+                                               class="table table-condensed   table-striped table-bordered ">
+                                            <thead>
+                                            <th>Acc No</th>
+                                            <th>Name</th>
+                                            <th>Mobile</th>
+
+                                            <th>Last Deposit Date</th>
+                                            <th>Last Installment Type</th>
+
+                                            <th>Overdue Amount</th>
+                                            <th>Recieved Amount</th>
+                                            <th>Pending Amount</th>
+
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="r in dData.data[0]"
+                                                ng-style="{'background-color': colors[r.l_p]}">
+
+                                                <td><span style="cursor: pointer;" data-filterListId="{{r.pid}}"
+                                                          onclick="callLoan(this)">{{r.pid}}</span></td>
+                                                <td>{{r.name}}</td>
+                                                <td><a href="tel:{{r.mob}}" target="_blank">{{r.mob}}</a></td>
+
+                                                <td>{{r.ldd}}</td>
+                                                <td>{{r.ltd}}</td>
+
+                                                <td><i class="fa fa-rupee"> </i> {{r.Overdue}}
+                                                </td>
+                                                <td><i class="fa fa-rupee"> </i> {{r.Recieved}}</td>
+                                                <td><i class="fa fa-rupee"> </i> {{r.Pending}}</td>
+                                            </tr>
+                                            <!-- <tr ng-repeat="r in rData.data[1]">
+                                                 <td style="border-color: #000000;"  colspan="7"></td>
+                                                 <td style="border-color: #000000;"  ><h3><b><i class="fa fa-rupee"> </i> {{r.tot}}</b></h3></td>
+                                                 <td style="border-color: #000000;" ><h3><b><i class="fa fa-rupee"> </i> {{r.tot_act_iamt}}</b></h3></td>
+                                                 <td style="border-color: #000000;" ><h3><b><i class="fa fa-rupee"> </i> {{r.tot_profit}}</b></h3></td>
+                                             </tr>-->
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- /.box-body -->
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane " id="tab_6">
+                            <div class="box box-info ">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"><b>Statistics</b></h3>
+                                </div>
+
+                                <div class=" box-body">
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-yellow"><i
+                                                        class="ion ion-ios-people-outline"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Members</span>
+                                                <span class="info-box-number">{{sData.data[0][0].psum}}</span>
+                                            </div>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-4">
+                                            <span class="info-box-icon bg-blue-gradient"><i
+                                                        class="ion ion-ios-book"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Loans</span>
+                                                <span class="info-box-number">{{sData.data[0][0].lsum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-olive"><i class="ion ion-ios-rose"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Running Loans</span>
+                                                <span class="info-box-number">{{sData.data[0][0].rlsum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-teal"><i
+                                                        class="ion ion-ios-calculator"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Installments</span>
+                                                <span class="info-box-number">{{sData.data[0][0].isum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-maroon-gradient"><i
+                                                        class="ion ion-ios-wineglass"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Loaned Amount</span>
+                                                <span class="info-box-number"><i class="fa fa-rupee"> </i>{{sData.data[0][0].lssum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-green-gradient"><i
+                                                        class="ion ion-ios-rewind"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Recieved Amount</span>
+                                                <span class="info-box-number"><i class="fa fa-rupee"> </i> {{sData.data[0][0].issum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-red-gradient"><i
+                                                        class="ion ion-ios-bolt"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Fined Amount</span>
+                                                <span class="info-box-number"><i class="fa fa-rupee"> </i> {{sData.data[0][0].fssum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-green-active"><i
+                                                        class="ion ion-android-archive"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Net Amount</span>
+                                                <span class="info-box-number"><i class="fa fa-rupee"> </i> {{sData.data[0][0].nsum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <!-- /.box-body -->
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<button data-toggle="modal" hidden id="accModalBtn" data-target="#accModal">Modal</button>
+</body>
+
+<!--Acc Modal-->
+<div id="accModal" class="modal fade" role="dialog">
+    <div class="modal-sm modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 id="accText"></h4>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-info pull-right" onclick="goForLoan()">Go For Loan <i
+                            class="fa fa-forward"></i></button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--Today Summary Modal-->
+<div id="sumModal" class="modal fade" role="dialog">
+    <div class="modal-lg  modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span><b><i class="fa fa-book"></i> Today Summary</b></span>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="  table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <th>Receipt Number</th>
+                        <th>Acc No</th>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Deposit Date</th>
+                        <th>Deposit By</th>
+                        <th>Installment Type</th>
+                        <th>Note</th>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="r in tData.data[0]">
+                            <td>{{r.installment_id}}</td>
+                            <td>{{r.pid}}</td>
+                            <td>{{r.pname}}</td>
+                            <td><i class="fa fa-rupee"> </i> {{r.installment_amount}}</td>
+                            <td>{{r.installment_deposit_date}}</td>
+                            <td>{{r.uname}}</td>
+                            <td>{{r.itype}}</td>
+                            <td>{{r.note}}</td>
+                        </tr>
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div><!--Fine Modal-->
+<div id="fineModal" class="modal fade" role="dialog">
+    <div class="modal-lg  modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span><b><i class="fa fa-book"></i> Fine Summary</b></span>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="  table-responsive"
+                     style="height: 50%; overflow-y: auto; overflow-scrolling: auto; overflow-x:hidden; ">
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+
+                        <th>Fine ID</th>
+                        <th>Loan ID</th>
+                        <th>Fine Amount</th>
+                        <th>Fine Date</th>
+
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="r in fData.data[0]">
+                            <td>{{r.fine_id}}</td>
+                            <td>{{r.l_id}}</td>
+                            <td><i class="fa fa-rupee"> </i> {{r.fine_amount}}</td>
+                            <td>{{r.fine_dat}}</td>
+
+                        </tr>
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--Installment Modal-->
+<div id="installModal" class="modal fade" role="dialog">
+    <div class="modal-sm  modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span><b><i class="fa fa-book"></i> Installments </b></span>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="  table-responsive"
+                     style="height: 50%; overflow-y: auto; overflow-scrolling: auto; overflow-x:hidden; ">
+
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+
+                        <th>Date</th>
+                        <th>Amount</th>
+
+
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="r in IlData.data[1]">
+                            <td>{{r.date1}}</td>
+                            <td><i class="fa fa-rupee"> </i> {{r.amt}}</td>
+
+
+                        </tr>
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<%
+include ../include/footer.ejs
+%>
+</html>
+
+<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script>
+
+    $('#tab_lang').DataTable();
+</script>
+<script src="../../dist/js/custom.js">
+
+</script>

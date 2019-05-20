@@ -1,0 +1,138 @@
+<div class="footer-w3layouts">
+		<div class="footer-top-agile">
+		<span><a href="/"><span><image class="img" style="height:10em;" src="dist/web_img/logo_300x300.png"></image></span> </a></span>
+		<p class="para three"><b>MB-Bathrooms Fitter</b><br>
+			<i>Specialists in fitting all types of Bathrooms(Fitting, Tiling, Under Floor Heating, Plumbering& Electrical, plastering & Skimming, Painting & Decorating)</i></br>
+			M: <a href="tel:07714067076">07714067076</a></br>
+			Email: <a href="mailto:contact@mb-bathrooms.uk">contact@mb-bathrooms.uk</a></br>
+			Email: <a href="mailto:harv.singh39@gmail.com">harv.singh39@gmail.com</a></br>
+			Address: 60 Ranelagh, Road, Southall, UB1 1DG</br>
+		</p>
+		</div>
+		<!--<div class="subscribe-grid">
+		<h5>Subscribe for our latest updates</h5>
+		<p>Get <span>10%</span> off on booking</p>
+					<form action="#" method="post">
+						<input type="email" placeholder="Subscribe" name="Subscribe" required="">
+						<button class="btn1"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
+					</form>
+				</div>-->
+		<div class="footer-bottom-wthree">
+			<div class="copyright-wthree">
+				<p>&copy; 2019 MB-Bathrooms . All Rights Reserved | Design by <a href="http://w3layouts.com/"> W3layouts </a></p>
+			        <div class="wthree-icon footer">
+							<a href="#" class="social-button twitter"><i class="fa fa-twitter"></i></a>
+							<a href="#" class="social-button facebook"><i class="fa fa-facebook"></i></a>
+							<a href="#" class="social-button google"><i class="fa fa-google-plus"></i></a>
+						</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		</div>
+<!-- //Footer -->
+
+	<!-- js -->
+<script src="dist/web_js/jquery-2.2.3.min.js"></script>
+<!-- //js -->
+<!-- start-smooth-scrolling -->
+<script type="text/javascript" src="dist/web_js/move-top.js"></script>
+<script type="text/javascript" src="dist/web_js/easing.js"></script>
+<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+
+		$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+</script>
+<!-- //end-smooth-scrolling -->
+	<!-- script for responsive tabs -->
+<script src="dist/web_js/easy-responsive-tabs.js"></script>
+<script>
+$(document).ready(function () {
+$('#horizontalTab').easyResponsiveTabs({
+type: 'default', //Types: default, vertical, accordion
+width: 'auto', //auto or any width like 600px
+fit: true,   // 100% fit in a container
+closed: 'accordion', // Start closed if in accordion view
+activate: function(event) { // Callback function if tab is switched
+var $tab = $(this);
+var $info = $('#tabInfo');
+var $name = $('span', $info);
+$name.text($tab.text());
+$info.show();
+}
+});
+$('#verticalTab').easyResponsiveTabs({
+type: 'vertical',
+width: 'auto',
+fit: true
+});
+});
+</script>
+<!-- stats -->
+	<script src="dist/web_js/jquery.waypoints.min.js"></script>
+	<script src="dist/web_js/jquery.countup.js"></script>
+		<script>
+			$('.counter').countUp();
+		</script>
+<!-- //stats -->
+
+<script type="text/javascript" src="dist/web_js/simple-lightbox.min.js"></script>
+			<script>
+				$(function(){
+					var gallery = $('.agileinfo-gallery-row a').simpleLightbox({navText:		['&lsaquo;','&rsaquo;']});
+				});
+			</script>
+<!-- script for responsive tabs -->
+	<!-- search jQuery -->
+	<script src="dist/web_js/search.js"></script>
+	<!-- //search jQuery -->
+	<script src="dist/web_js/snap.svg-min.js"></script>
+	<script src="dist/web_js/main.js"></script> <!-- Resource jQuery -->
+	<!-- smooth-scrolling-of-move-up -->
+	<!-- carousel -->
+<script src="/dist/web_js/owl.carousel.js"></script>
+	<script>
+	$(document).ready(function() {
+	  $("#owl-demo").owlCarousel({
+		items :3,
+		itemsDesktop : [768,2],
+		itemsDesktopSmall : [414,1],
+		lazyLoad : true,
+		autoPlay : true,
+		navigation :true,
+
+		navigationText :  false,
+		pagination : true,
+
+	  });
+
+	});
+	</script>
+<!-- //carousel -->
+
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear'
+			};
+			*/
+
+			$().UItoTop({ easingType: 'easeOutQuart' });
+
+		});
+	</script>
+	<!-- //smooth-scrolling-of-move-up -->
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="dist/web_js/bootstrap.js"></script>
+</body>
+</html>

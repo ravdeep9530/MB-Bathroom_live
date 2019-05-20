@@ -1,0 +1,1280 @@
+<html>
+
+<head>
+    <% include ../include/header.ejs
+    %>
+
+</head>
+<!-- Main content -->
+
+<div id="load"
+    style="display: none; margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8;">
+    <p style="position: absolute; color: White; top: 50%; left: 45%;">
+        Loading, please wait...
+        <img src="dist/img/24.gif">
+    </p>
+</div>
+<div class="content-wrapper">
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+
+
+            <div class="col-lg-12">
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs" id="myTab">
+                        <li class="{{a.class}}" ng-repeat="a in tabData.data"><a href="{{a.href}}" id="{{a.id}}"
+                                ng-click="gs(a.click_method_name)" data-toggle="tab">{{a.tab_name}}</a>
+                        </li>
+
+                        <!-- <li class="dropdown">
+                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                 Dropdown <span class="caret"></span>
+                             </a>
+                             <ul class="dropdown-menu">
+                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                                 <li role="presentation" class="divider"></li>
+                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                             </ul>
+                         </li>-->
+                        <li class="pull-right"><a href="javascript:genPDF()" class="text-muted"><i
+                                    class="fa fa-camera"></i></a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                            <div>
+                                <!-- Horizontal Form -->
+                                <div class="box box-info " ng-init="getRoomCategory(h_id)">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Add images in Gallery </h3>
+
+                                    </div>
+                                    <div class="col-lg-12  box-body  bg-gray-light box-solid">
+
+                                        <div class="row">
+                                            <form class="form-horizontal" data-ng-init="getForms(1)"
+                                                id="room_booking_form"
+                                                action="{{frData[1].data[0][0].action+'/'+frData[1].data[0][0].form_id+'&'+frData[1].data[0][0].form_table_name}}"
+                                                method="post">
+                                                <div class="box-body ">
+
+
+                                                    <div class="form-horizontal ">
+                                                        <div class="panel panel-success">
+
+
+                                                            <div class="panel-body">
+                                                                <!--  <center>
+                      
+                                                                    <div class="col-lg-3 col-lg-offset-2">
+                                                                        <img src="{{pData.data[0].photo_url}}"
+                                                                             class="img-thumbnail img-responsive">
+                                                                    </div>
+                                                                </center>-->
+                                                                <div class="form-group col-lg-4"
+                                                                    ng-repeat="f in frData[1].data[1]">
+                                                                    <label for="inputEmail3"
+                                                                        ng-if="f.isHidden==0 || f.caption_name!=''"
+                                                                        class="col-sm-3 control-label" style="text-align: left;">{{f.caption_name}}</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <label ng-if="f.type_name=='file'"
+                                                                            class="btn btn-default btn-sm center-block btn-file">
+                                                                            <i class="fa fa-upload fa-2x"
+                                                                                aria-hidden="true"></i>
+                                                                            <input ng-if="f.type_name=='file'"
+                                                                                form="fileup" ng-hide="f.isHidden"
+                                                                                style="display: none;"
+                                                                                type="{{f.type_name}}"
+                                                                                maxlength="{{f.field_max_length}}"
+                                                                                minlength="{{f.field_min_length}}"
+                                                                                ng-required="{{f.required_id}}"
+                                                                                ng-readonly="{{f.field_readonly}}"
+                                                                                ng-class="f.field_class"
+                                                                                class="form-control col-lg-2"
+                                                                                name="filetoupload" id="filetoupload"
+                                                                                ng-value="{{f.field_value}}"
+                                                                                placeholder="{{f.field_placeholder}}">
+                                                                            <input ng-if="f.type_name=='file'"
+                                                                                ng-hide="1" type="text"
+                                                                                maxlength="{{f.field_max_length}}"
+                                                                                minlength="{{f.field_min_length}}"
+                                                                                ng-required="{{f.required_id}}"
+                                                                                ng-readonly="1" ng-class="f.field_class"
+                                                                                class="form-control col-lg-2"
+                                                                                name="{{f.field_name}}"
+                                                                                id="{{f.field_id}}"
+                                                                                value="<%=dp%>"><span><%=dp%></span>
+
+                                                                            <button ng-if="f.type_name=='file'"
+                                                                                style="float:right;" form="fileup"
+                                                                                ng-hide="<%=dp%>"
+                                                                                class="btn btn-sm btn-primary"
+                                                                                type="button"
+                                                                                onclick="document.getElementById('fileup').submit();">Upload</button>
+
+                                                                        </label>
+
+                                                                        <input
+                                                                            ng-if="f.type_name!='file' && f.type_name!='textarea' && f.type_name!='select' && f.type_name!='button' && f.type_name!='submit' && f.type_name!='reset'"
+                                                                            ng-hide="f.isHidden" type="{{f.type_name}}"
+                                                                            maxlength="{{f.field_max_length}}"
+                                                                            minlength="{{f.field_min_length}}"
+                                                                            ng-required="{{f.required_id}}"
+                                                                            ng-readonly="{{f.field_readonly}}"
+                                                                            ng-class="f.field_class"
+                                                                            class="form-control col-lg-2"
+                                                                            name="{{f.field_name}}" id="{{f.field_id}}"
+                                                                            ng-value="{{f.field_value}}"
+                                                                            placeholder="{{f.field_placeholder}}">
+
+
+
+                                                                        <textarea ng-if="f.type_name=='textarea'"
+                                                                            ng-hide="f.isHidden"
+                                                                            maxlength="{{f.field_max_length}}"
+                                                                            minlength="{{f.field_min_length}}"
+                                                                            ng-required="{{f.required_id}}"
+                                                                            ng-readonly="{{f.field_readonly}}"
+                                                                            class="form-control col-lg-2"
+                                                                            name="{{f.field_name}}" id="{{f.field_id}}"
+                                                                            ng-value="{{f.field_value}}"
+                                                                            placeholder="{{f.field_placeholder}}"></textarea>
+                                                                        <select ng-if="f.type_name=='select'"
+                                                                            ng-hide="f.isHidden"
+                                                                            data-ng-init="getL_fieldByname(f.l_field_name)"
+                                                                            ng-value="{{f.field_value}}"
+                                                                            ng-required="{{f.required_id}}"
+                                                                            ng-readonly="{{f.field_readonly}}"
+                                                                            class="form-control col-lg-2"
+                                                                            name="{{f.field_name}}"
+                                                                            ng-blur="gs(f.field_other_attibute)"
+                                                                            id="{{f.field_id}}">
+                                                                            <option ng-repeat="fo in froData.data"
+                                                                                ng-value="{{fo.fid}}">{{fo.description}}
+                                                                            </option>
+
+                                                                        </select>
+
+                                                                        <div 
+                                                                            ng-if="f.type_name=='button' || f.type_name=='reset' || f.type_name=='submit'" style="float: right;">
+
+                                                                            <button type="{{f.type_name}}"
+                                                                                maxlength="{{f.field_max_length}}"
+                                                                                minlength="{{f.field_max_length}}"
+                                                                                ng-required="{{f.required_id}}"
+                                                                                ng-readonly="{{f.field_readonly}}"
+                                                                                ng-class="f.field_class"
+                                                                                class="form-control col-lg-2"
+                                                                                name="{{f.field_name}}"
+                                                                                id="{{f.field_id}}"
+                                                                                ng-value="f.field_value">
+                                                                                {{f.field_value}}
+
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <!-- /.box-header -->
+                                                            <!-- form start -->
+
+
+                                                            <!-- /.box-body -->
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </form>
+
+
+                                        </div>
+
+                                    </div>
+
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+
+
+                                    <div class=" box-body">
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="col-lg-12">
+                                <hr />
+                            </div>
+
+                        </div>
+                        <div class="tab-pane" id="tab_2">
+                            <div class="box box-info ">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Feedback Form</h3>
+                                </div>
+                                <div class="box-body box-solid bg-gray-light">
+                                    <div class="col-md-12">
+                                        <form class="form-horizontal" data-ng-init="getForms(2)"
+                                                id="feedback_form"
+                                                action="{{frData[2].data[0][0].action+'/'+frData[2].data[0][0].form_id+'&'+frData[2].data[0][0].form_table_name}}"
+                                                method="post">
+                                                <div class="box-body ">
+
+
+                                                    <div class="form-horizontal ">
+                                                        <div class="panel panel-success">
+
+
+                                                            <div class="panel-body">
+                                                                <!--  <center>
+                      
+                                                                    <div class="col-lg-3 col-lg-offset-2">
+                                                                        <img src="{{pData.data[0].photo_url}}"
+                                                                             class="img-thumbnail img-responsive">
+                                                                    </div>
+                                                                </center>-->
+                                                                <div class="form-group col-lg-4" style="float:left;"
+                                                                    ng-repeat="f in frData[2].data[1]">
+                                                                    <label for="inputEmail3"
+                                                                        ng-if="f.isHidden==0 || f.caption_name!=''" 
+                                                                        class="col-sm-4  control-label" style="text-align: left;">{{f.caption_name}}</label>
+
+                                                                    <div class="col-sm-10">
+                                                                        <label ng-if="f.type_name=='file'"
+                                                                            class="btn btn-default btn-sm center-block btn-file">
+                                                                            <i class="fa fa-upload fa-2x"
+                                                                                aria-hidden="true"></i>
+                                                                            <input ng-if="f.type_name=='file'"
+                                                                                form="fileup" ng-hide="f.isHidden"
+                                                                                style="display: none;"
+                                                                                type="{{f.type_name}}"
+                                                                                maxlength="{{f.field_max_length}}"
+                                                                                minlength="{{f.field_min_length}}"
+                                                                                ng-required="{{f.required_id}}"
+                                                                                ng-readonly="{{f.field_readonly}}"
+                                                                                ng-class="f.field_class"
+                                                                                class="form-control col-lg-2"
+                                                                                name="filetoupload" id="filetoupload"
+                                                                                ng-value="{{f.field_value}}"
+                                                                                placeholder="{{f.field_placeholder}}">
+                                                                            <input ng-if="f.type_name=='file'"
+                                                                                ng-hide="1" type="text"
+                                                                                maxlength="{{f.field_max_length}}"
+                                                                                minlength="{{f.field_min_length}}"
+                                                                                ng-required="{{f.required_id}}"
+                                                                                ng-readonly="1" ng-class="f.field_class"
+                                                                                class="form-control col-lg-2"
+                                                                                name="{{f.field_name}}"
+                                                                                id="{{f.field_id}}"
+                                                                                value="<%=dp%>"><span><%=dp%></span>
+
+                                                                            <button ng-if="f.type_name=='file'"
+                                                                                style="float:right;" form="fileup"
+                                                                                ng-hide="<%=dp%>"
+                                                                                class="btn btn-sm btn-primary"
+                                                                                type="button"
+                                                                                onclick="document.getElementById('fileup').submit();">Upload</button>
+
+                                                                        </label>
+
+                                                                        <input
+                                                                            ng-if="f.type_name!='file' && f.type_name!='textarea' && f.type_name!='select' && f.type_name!='button' && f.type_name!='submit' && f.type_name!='reset'"
+                                                                            ng-hide="f.isHidden" type="{{f.type_name}}"
+                                                                            maxlength="{{f.field_max_length}}"
+                                                                            minlength="{{f.field_min_length}}"
+                                                                            ng-required="{{f.required_id}}"
+                                                                            ng-readonly="{{f.field_readonly}}"
+                                                                            ng-class="f.field_class"
+                                                                            class="form-control col-lg-2"
+                                                                            name="{{f.field_name}}" id="{{f.field_id}}"
+                                                                            ng-value="{{f.field_value}}"
+                                                                            placeholder="{{f.field_placeholder}}">
+
+
+
+                                                                        <textarea ng-if="f.type_name=='textarea'"
+                                                                            ng-hide="f.isHidden"
+                                                                            maxlength="{{f.field_max_length}}"
+                                                                            minlength="{{f.field_min_length}}"
+                                                                            ng-required="{{f.required_id}}"
+                                                                            ng-readonly="{{f.field_readonly}}"
+                                                                            class="form-control col-lg-2"
+                                                                            name="{{f.field_name}}" id="{{f.field_id}}"
+                                                                            ng-value="{{f.field_value}}"
+                                                                            placeholder="{{f.field_placeholder}}"></textarea>
+                                                                        <select ng-if="f.type_name=='select'"
+                                                                            ng-hide="f.isHidden"
+                                                                            data-ng-init="getL_fieldByname(f.l_field_name)"
+                                                                            ng-value="{{f.field_value}}"
+                                                                            ng-required="{{f.required_id}}"
+                                                                            ng-readonly="{{f.field_readonly}}"
+                                                                            class="form-control col-lg-2"
+                                                                            name="{{f.field_name}}"
+                                                                            ng-blur="gs(f.field_other_attibute)"
+                                                                            id="{{f.field_id}}">
+                                                                            <option ng-repeat="fo in froData.data"
+                                                                                ng-value="{{fo.fid}}">{{fo.description}}
+                                                                            </option>
+
+                                                                        </select>
+
+                                                                        <div
+                                                                            ng-if="f.type_name=='button' || f.type_name=='reset' || f.type_name=='submit'" >
+
+                                                                            <button type="{{f.type_name}}"
+                                                                                maxlength="{{f.field_max_length}}"
+                                                                                minlength="{{f.field_max_length}}"
+                                                                                ng-required="{{f.required_id}}"
+                                                                                ng-readonly="{{f.field_readonly}}"
+                                                                                ng-class="f.field_class"
+                                                                                class="form-control col-lg-2"
+                                                                                name="{{f.field_name}}"
+                                                                                id="{{f.field_id}}"
+                                                                                ng-value="f.field_value">
+                                                                                {{f.field_value}}
+
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <!-- /.box-header -->
+                                                            <!-- form start -->
+
+
+                                                            <!-- /.box-body -->
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </form>
+
+
+                                                    </div>
+                                                    
+                                                </div>
+                                        
+
+                                    </div>
+                                </div>
+
+                           
+
+
+                        <div class="tab-pane" id="tab_3">
+                            <div class="box box-info ">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Reports</h3>
+                                </div>
+                                <div class="box-body">
+                                    <div class="box box-solid " style="background-color: #bebebf;">
+                                        <div class="box-header">
+                                            <i class="fa fa-th"></i>
+
+                                            <h3 class="box-title">Today Recap Report</h3>
+
+                                            <div class="box-tools pull-right">
+                                                <button type="button" class="btn bg-red btn-sm" data-target="mg1"
+                                                    data-toggle="collapse">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn bg-red-gradient btn-sm"
+                                                    data-widget="remove"><i class="fa fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="box-body border-radius-none  " id="mg1">
+                                            <div class="col-md-6">
+                                                <div class="box">
+
+                                                    <!-- /.box-header -->
+                                                    <div class="box-body no-padding table-responsive">
+                                                        <table class="table table-striped">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th style="width: 10px">#</th>
+                                                                    <th>Category</th>
+                                                                    <th>Booking</th>
+                                                                    <th style="width: 40px">%</th>
+                                                                </tr>
+                                                                <tr ng-repeat="y in tdData.data[5]">
+                                                                    <td>{{y.row_count}}</td>
+                                                                    <td><b>{{y.c_name}}</b>({{y.r_count}}/{{y.r_tot}})
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="progress progress-xs">
+                                                                            <div class="progress-bar "
+                                                                                ng-class="whatClassIsIt((100*y.r_count)/y.r_tot)"
+                                                                                style="width: {{100*y.r_count/y.r_tot| number:2}}%">
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td><span class="badge "
+                                                                            ng-class="whatClassIsIt((100*y.r_count)/y.r_tot)">{{100*y.r_count/y.r_tot | number:2}}%</span>
+                                                                    </td>
+                                                                </tr>
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- /.box-body -->
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="box box-widget widget-user">
+                                                    <!-- Add the bg color to the header using any of the bg-* classes -->
+                                                    <div class="widget-user-header bg-aqua-active">
+                                                        <h3 class="widget-user-username">Today Sale Summary</h3>
+                                                        <h5 class="widget-user-desc"></h5>
+                                                    </div>
+
+                                                    <div class="box-footer">
+                                                        <div class="row" style="color: #0a0a0a;">
+                                                            <div class="col-sm-3 border-right">
+                                                                <div class="description-block">
+                                                                    <h5 class="description-header">
+                                                                        {{tdData.data[6][0].b}}</h5>
+                                                                    <span class="description-text">Booked</span>
+                                                                </div>
+                                                                <!-- /.description-block -->
+                                                            </div>
+                                                            <!-- /.col -->
+                                                            <div class="col-sm-3 border-right">
+                                                                <div class="description-block">
+                                                                    <h5 class="description-header">
+                                                                        {{tdData.data[6][0].t}}</h5>
+                                                                    <span class="description-text">Tenative</span>
+                                                                </div>
+                                                                <!-- /.description-block -->
+                                                            </div>
+                                                            <!-- /.col -->
+                                                            <div class="col-sm-3 border-right">
+                                                                <div class="description-block">
+                                                                    <h5 class="description-header">
+                                                                        {{tdData.data[6][0].c}}</h5>
+                                                                    <span class="description-text">Cancelled</span>
+                                                                </div>
+                                                                <!-- /.description-block -->
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <div class="description-block">
+                                                                    <h5 class="description-header"><i
+                                                                            class="fa fa-rupee"></i>
+                                                                        {{tdData.data[6][0].tot | currency:""}}</h5>
+                                                                    <span class="description-text">Today Sale</span>
+                                                                </div>
+                                                                <!-- /.description-block -->
+                                                            </div>
+                                                            <!-- /.col -->
+                                                        </div>
+                                                        <!-- /.row -->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <!-- /.box-body -->
+
+                                        <!-- /.box-footer -->
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <div class="box box-solid bg-aqua-gradient">
+                                        <div class="box-header">
+                                            <i class="fa fa-th"></i>
+
+                                            <h3 class="box-title">Monthly Status Graph</h3>
+
+                                            <div class="box-tools pull-right">
+                                                <button type="button" class="btn bg-teal btn-sm" data-target="mg1"
+                                                    data-toggle="collapse">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i
+                                                        class="fa fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="box-body border-radius-none  " id="mg1">
+                                            <div class="chart " id="line-chart_1" style="height: 250px;"></div>
+                                        </div>
+                                        <!-- /.box-body -->
+
+                                        <!-- /.box-footer -->
+                                    </div>
+                                </div>
+
+                                <div class="box-body">
+                                    <div class="box box-solid bg-teal-gradient">
+                                        <div class="box-header">
+                                            <i class="fa fa-th"></i>
+
+                                            <h3 class="box-title">Monthly Sales Graph</h3>
+
+                                            <div class="box-tools pull-right">
+                                                <button type="button" class="btn bg-teal btn-sm" data-target="mg"
+                                                    data-toggle="collapse">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i
+                                                        class="fa fa-times"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="box-body border-radius-none  " id="mg">
+                                            <div class="chart " id="line-chart" style="height: 250px;"></div>
+                                        </div>
+                                        <!-- /.box-body -->
+
+                                        <!-- /.box-footer -->
+                                    </div>
+                                </div>
+                                <div class="box">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Monthly Recap Report</h3>
+                                        <div class=" pull-right">
+
+                                            <span class="form-inline">
+                                                <label class="badge label-success label">From:</label>
+                                                <input type="text" id="rpt_datepickerFrom" class="form-control">
+                                            </span>
+                                            <span class="form-inline">
+                                                <label class="badge label-success label">To:</label>
+                                                <input type="text" id="rpt_datepickerTo" class="form-control">
+                                            </span>
+
+                                            <span class="form-inline">
+                                                <button class="badge btn btn-warning" ng-click="getReports(2,h_id)"><i
+                                                        class=" fa fa-2x fa-search"></i><b>Search</b></button>
+
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <p class="text-center">
+                                                    <strong>Sales:<span id="f"></span></strong>
+                                                </p>
+
+                                                <div class="chart">
+                                                    <!-- Sales Chart Canvas -->
+                                                    <div id="salesChart" style="height: 180px;  "></div>
+                                                </div>
+                                                <!-- /.chart-responsive -->
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-md-4">
+                                                <p class="text-center">
+                                                    <strong>Average of Selected Time Range</strong>
+                                                </p>
+
+                                                <div class="progress-group" title="{{tr.d_avg}}/{{tr.tot_room}}"
+                                                    ng-repeat="tr in tdData.data[2]">
+                                                    <span class="progress-text">{{tr.c_name}}</span>
+                                                    <span
+                                                        class="progress-number"><b>{{tr.d_avg}}</b>/{{tr.tot_room}}</span>
+
+                                                    <div class="progress sm">
+                                                        <div class="progress-bar "
+                                                            ng-class="whatClassIsIt((tr.d_avg*100)/tr.tot_room)"
+                                                            style="width: {{(tr.d_avg*100)/tr.tot_room}}%"></div>
+                                                    </div>
+                                                </div>
+                                                <!-- /.progress-group -->
+
+
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                        <!-- /.row -->
+                                    </div>
+                                    <!-- ./box-body -->
+                                    <div class="box-footer">
+                                        <div class="row">
+                                            <div class="col-sm-3 col-xs-6">
+                                                <div class="description-block border-right">
+                                                    <span class="description-percentage text-green"><i
+                                                            class="fa fa-caret-up"></i> 17%</span>
+                                                    <h5 class="description-header"><i class="fa fa-rupee"></i>
+                                                        {{tdData.data[7][0].tot | currency:""}}</h5>
+                                                    <span class="description-text">TOTAL REVENUE</span>
+                                                </div>
+                                                <!-- /.description-block -->
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-3 col-xs-6">
+                                                <div class="description-block border-right">
+                                                    <span class="description-percentage text-yellow"><i
+                                                            class="fa fa-caret-left"></i> 0%</span>
+                                                    <h5 class="description-header">{{tdData.data[7][0].b}}</h5>
+                                                    <span class="description-text">TOTAL BOOKED</span>
+                                                </div>
+                                                <!-- /.description-block -->
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-3 col-xs-6">
+                                                <div class="description-block border-right">
+                                                    <span class="description-percentage text-green"><i
+                                                            class="fa fa-caret-up"></i> 20%</span>
+                                                    <h5 class="description-header">{{tdData.data[7][0].t}}</h5>
+                                                    <span class="description-text">TOTAL TENTIVE</span>
+                                                </div>
+                                                <!-- /.description-block -->
+                                            </div>
+                                            <!-- /.col -->
+                                            <div class="col-sm-3 col-xs-6">
+                                                <div class="description-block">
+                                                    <span class="description-percentage text-red"><i
+                                                            class="fa fa-caret-down"></i> 18%</span>
+                                                    <h5 class="description-header">{{tdData.data[7][0].c}}</h5>
+                                                    <span class="description-text">GOAL CANCELLED</span>
+                                                </div>
+                                                <!-- /.description-block -->
+                                            </div>
+                                        </div>
+                                        <!-- /.row -->
+                                    </div>
+                                    <!-- /.box-footer -->
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="tab-pane " id="tab_4">
+                            <div class="box box-info ">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"><b>Search</b></h3>
+                                </div>
+
+                                <div class=" box-body">
+
+                                    <div class="col-lg-12">
+
+                                        <div class="input-group input-group-lg">
+                                            <input class="form-control" id="acc" type="text"
+                                                placeholder="Enter Mobile Number/Booking ID">
+                                            <span class="input-group-btn">
+                                                <button type="button" ng-click="search($event)"
+                                                    class="btn btn-info btn-flat"><i class="fa fa-search"></i>
+                                                    Search</button>
+                                            </span>
+                                        </div>
+                                        <div class="box-footer table-responsive">
+                                            <table id="datatable1"
+                                                class="table table-hover table-condensed    table-striped table-bordered ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Booking ID</th>
+                                                        <th>Room Name</th>
+                                                        <th>Customer Name</th>
+                                                        <th>Customer Mobile</th>
+                                                        <th>Start Date</th>
+                                                        <th>End Date</th>
+                                                        <th>Booking Status</th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-if="searchData.data[0]==null">
+                                                        <td colspan="7">No Booking Found</td>
+                                                    </tr>
+                                                    <tr ng-repeat="r in searchData.data"
+                                                        data-target="#roomEditFormModal" data-toggle="modal"
+                                                        ng-click="getBookindDetailBySummaryID(r.summary_id)">
+                                                        <td>{{r.summary_id}}</td>
+                                                        <td>{{r.room_name}}</td>
+                                                        <td>{{r.customer_name}}</td>
+                                                        <td>{{r.customer_mob}}</td>
+                                                        <td>{{r.book_start_date | date : "dd-MM-yyyy"}}</td>
+                                                        <td>{{r.book_end_date | date : "dd-MM-yyyy" }}</td>
+                                                        <td>{{r.description}}</td>
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <!--<div class="table table-responsive">
+                                <table id="tab_Track" class="table table-bordered  table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>S No.</th>
+                                        <th>Track Name</th>
+                                        <th>Track Category</th>
+                                        <th>Track Language</th>
+                                        <th>Artist</th>
+                                        <th>Genre</th>
+                                        <th>Tags</th>
+                                        <th>Beat</th>
+                                        <th>Tempo</th>
+                                        <th>IsActive</th>
+                                        <th>Action</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody id="trackTbody">
+                                    </tbody>
+                                </table>
+                            </div>-->
+
+                        </div>
+                        <div class="tab-pane " id="tab_5">
+                            <div class="box box-info ">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"><b>Defaulters List</b></h3>
+                                </div>
+
+                                <div class=" box-body">
+                                    <div class="col-lg-12 table-responsive">
+                                        <table style="border-color: #901906;"
+                                            class="table table-condensed   table-striped table-bordered ">
+                                            <thead>
+                                                <th>Acc No</th>
+                                                <th>Name</th>
+                                                <th>Mobile</th>
+
+                                                <th>Last Deposit Date</th>
+                                                <th>Last Installment Type</th>
+
+                                                <th>Overdue Amount</th>
+                                                <th>Recieved Amount</th>
+                                                <th>Pending Amount</th>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="r in dData.data[0]"
+                                                    ng-style="{'background-color': colors[r.l_p]}">
+
+                                                    <td><span style="cursor: pointer;" data-filterListId="{{r.pid}}"
+                                                            onclick="callLoan(this)">{{r.pid}}</span></td>
+                                                    <td>{{r.name}}</td>
+                                                    <td><a href="tel:{{r.mob}}" target="_blank">{{r.mob}}</a></td>
+
+                                                    <td>{{r.ldd}}</td>
+                                                    <td>{{r.ltd}}</td>
+
+                                                    <td><i class="fa fa-rupee"> </i> {{r.Overdue}}
+                                                    </td>
+                                                    <td><i class="fa fa-rupee"> </i> {{r.Recieved}}</td>
+                                                    <td><i class="fa fa-rupee"> </i> {{r.Pending}}</td>
+                                                </tr>
+                                                <!-- <tr ng-repeat="r in rData.data[1]">
+                                                 <td style="border-color: #000000;"  colspan="7"></td>
+                                                 <td style="border-color: #000000;"  ><h3><b><i class="fa fa-rupee"> </i> {{r.tot}}</b></h3></td>
+                                                 <td style="border-color: #000000;" ><h3><b><i class="fa fa-rupee"> </i> {{r.tot_act_iamt}}</b></h3></td>
+                                                 <td style="border-color: #000000;" ><h3><b><i class="fa fa-rupee"> </i> {{r.tot_profit}}</b></h3></td>
+                                             </tr>-->
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- /.box-body -->
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tab-pane " id="tab_6">
+                            <div class="box box-info ">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title"><b>Statistics</b></h3>
+                                </div>
+
+                                <div class=" box-body">
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-yellow"><i
+                                                    class="ion ion-ios-people-outline"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Members</span>
+                                                <span class="info-box-number">{{sData.data[0][0].psum}}</span>
+                                            </div>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-4">
+                                            <span class="info-box-icon bg-blue-gradient"><i
+                                                    class="ion ion-ios-book"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Loans</span>
+                                                <span class="info-box-number">{{sData.data[0][0].lsum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-olive"><i class="ion ion-ios-rose"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Running Loans</span>
+                                                <span class="info-box-number">{{sData.data[0][0].rlsum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-teal"><i
+                                                    class="ion ion-ios-calculator"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Installments</span>
+                                                <span class="info-box-number">{{sData.data[0][0].isum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-maroon-gradient"><i
+                                                    class="ion ion-ios-wineglass"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Loaned Amount</span>
+                                                <span class="info-box-number"><i class="fa fa-rupee">
+                                                    </i>{{sData.data[0][0].lssum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-green-gradient"><i
+                                                    class="ion ion-ios-rewind"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Recieved Amount</span>
+                                                <span class="info-box-number"><i class="fa fa-rupee"> </i>
+                                                    {{sData.data[0][0].issum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-red-gradient"><i
+                                                    class="ion ion-ios-bolt"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Total Fined Amount</span>
+                                                <span class="info-box-number"><i class="fa fa-rupee"> </i>
+                                                    {{sData.data[0][0].fssum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="info-box col-lg-3">
+                                            <span class="info-box-icon bg-green-active"><i
+                                                    class="ion ion-android-archive"></i></span>
+
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Net Amount</span>
+                                                <span class="info-box-number"><i class="fa fa-rupee"> </i>
+                                                    {{sData.data[0][0].nsum}}</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <!-- /.box-body -->
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<button data-toggle="modal" hidden id="accModalBtn" data-target="#accModal">Modal</button>
+</body>
+
+<!--Acc Modal-->
+<div id="accModal" class="modal fade" role="dialog">
+    <div class="modal-sm modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 id="accText"></h4>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-info pull-right" onclick="goForLoan()">Go For Loan <i
+                        class="fa fa-forward"></i></button>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="roomModal" class="modal fade" role="dialog">
+    <div class="modal-lg  modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span><b><i class="fa fa-home"></i> Room Details</b></span>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+
+                <div class="  table-responsive" style="overflow-y: auto; overflow-scrolling: auto; overflow-x:hidden; ">
+                    <div class="row box-body alert" style="border-bottom: 2px #a32d00 outset; ">
+                        <div class="col-lg-12 ">
+                            <div class='col-sm-5'>
+                                <div class="form-group">
+                                    <label for="datetimepickerFrom" class="col-sm-3 control-label">Select Date:</label>
+                                    <div class='input-group date' id='datetimepickerFrom'>
+                                        <input type='text' id='datetimepickerFromText' onchange="dateAtRoomPopUp()"
+                                            data-date-format="yyyy-mm-dd" class="form-control" />
+                                        <span class="input-group-addon"><span
+                                                class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn btn-sm btn-default tooltip1" ng-class="t.css_class"
+                        style="padding: 30px; margin: 10px; " ng-repeat="t in tData.data">
+                        <span class="tooltiptext" id="tol{{t.room_id}}">
+                        </span>
+                        <span ng-click="getRoomDetailByRoomID_temp(t.room_id)"
+                            class="badge"><b>{{t.room_name}}</b></span>
+
+                        <div class="collapse panel panel-default panel-body" id="{{t.room_id}}">
+
+                            <div class="col-lg-12">
+
+                                <div>
+
+                                    <div class="card shadow p-4 mb-4 bg-white">
+                                        <div class="card-header">
+                                            <button type="button" class="close btn fa-border"
+                                                ng-click="roomDetailClose(t.room_id)">&times; Close
+                                            </button>
+                                        </div>
+                                        <div class="card-body" ng-if="roomData[t.room_id].data.length<=0">
+                                            <br /><br />
+                                            <span class="badge alert">There is no booking.</span>
+
+                                        </div>
+                                        <div class="card-body" ng-if="roomData[t.room_id].data.length>0">
+                                            <br /><br />
+                                            <table id="datatable1"
+                                                class="table table-hover table-condensed    table-striped table-bordered ">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Booking ID</th>
+                                                        <th>Room Name</th>
+                                                        <th>Customer Name</th>
+                                                        <th>Customer Mobile</th>
+                                                        <th>Start Date</th>
+                                                        <th>End Date</th>
+                                                        <th>Booking Status</th>
+                                                    </tr>
+
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="r in roomData[t.room_id].data"
+                                                        data-target="#roomEditFormModal" data-toggle="modal"
+                                                        ng-click="getBookindDetailBySummaryID(r.summary_id)">
+                                                        <td>{{r.summary_id}}</td>
+                                                        <td>{{r.room_name}}</td>
+                                                        <td>{{r.customer_name}}</td>
+                                                        <td>{{r.customer_mob}}</td>
+                                                        <td>{{r.book_start_date | date : "dd-MM-yyyy"}}</td>
+                                                        <td>{{r.book_end_date | date : "dd-MM-yyyy" }}</td>
+                                                        <td>{{r.description}}</td>
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="card-footer">
+                                            <button data-target="#roomFormModal" class="btn btn-default btn-lg"
+                                                data-toggle="modal" data-dismiss="true"
+                                                ng-click="getRoomDetailByRoomID(t.room_id)">Book
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--Today Summary Modal-->
+<div id="roomFormModal" class="modal fade" role="dialog" style="background-color: rgba(235  ,230,235,0.6)">
+    <div class=" modal-lg modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span><b><i class="fa fa-book"></i> Room Form</b></span>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="  table-responsive">
+                    <form class="form-horizontal" data-ng-init="getForms(1)" id="room_booking_form"
+                        action="{{frData[1].data[0][0].action+'/'+frData[1].data[0][0].form_id+'&'+frData[1].data[0][0].form_table_name}}"
+                        method="post">
+                        <div class="box-body ">
+
+
+                            <div class="form-horizontal ">
+                                <div class="panel panel-success">
+
+
+                                    <div class="panel-body">
+                                        <!--  <center>
+
+                                              <div class="col-lg-3 col-lg-offset-2">
+                                                  <img src="{{pData.data[0].photo_url}}"
+                                                       class="img-thumbnail img-responsive">
+                                              </div>
+                                          </center>-->
+                                        <div class="form-group col-lg-4" ng-repeat="f in frData[1].data[1]">
+                                            <label for="inputEmail3" ng-if="f.isHidden==0 || f.caption_name!=''"
+                                                class="col-sm-3 control-label">{{f.caption_name}}</label>
+
+                                            <div class="col-sm-10">
+
+
+                                                <input
+                                                    ng-if="f.type_name!='textarea' && f.type_name!='select' && f.type_name!='button' && f.type_name!='submit' && f.type_name!='reset'"
+                                                    ng-hide="f.isHidden" type="{{f.type_name}}"
+                                                    maxlength="{{f.field_max_length}}"
+                                                    minlength="{{f.field_min_length}}" ng-required="{{f.required_id}}"
+                                                    ng-readonly="{{f.field_readonly}}" ng-class="f.field_class"
+                                                    class="form-control col-lg-2" name="{{f.field_name}}"
+                                                    id="{{f.field_id}}" ng-value="{{f.field_value}}"
+                                                    placeholder="{{f.field_placeholder}}">
+                                                <textarea ng-if="f.type_name=='textarea'" ng-hide="f.isHidden"
+                                                    maxlength="{{f.field_max_length}}"
+                                                    minlength="{{f.field_min_length}}" ng-required="{{f.required_id}}"
+                                                    ng-readonly="{{f.field_readonly}}" class="form-control col-lg-2"
+                                                    name="{{f.field_name}}" id="{{f.field_id}}"
+                                                    ng-value="{{f.field_value}}"
+                                                    placeholder="{{f.field_placeholder}}"></textarea>
+                                                <select ng-if="f.type_name=='select'" ng-hide="f.isHidden"
+                                                    data-ng-init="getL_fieldByname(f.l_field_name)"
+                                                    ng-value="{{f.field_value}}" ng-required="{{f.required_id}}"
+                                                    ng-readonly="{{f.field_readonly}}" class="form-control col-lg-2"
+                                                    name="{{f.field_name}}" ng-blur="gs(f.field_other_attibute)"
+                                                    id="{{f.field_id}}">
+                                                    <option ng-repeat="fo in froData.data" ng-value="{{fo.fid}}">
+                                                        {{fo.description}}
+                                                    </option>
+
+                                                </select>
+
+                                                <div
+                                                    ng-if="f.type_name=='button' || f.type_name=='reset' || f.type_name=='submit'">
+
+                                                    <button type="{{f.type_name}}" maxlength="{{f.field_max_length}}"
+                                                        minlength="{{f.field_max_length}}"
+                                                        ng-required="{{f.required_id}}"
+                                                        ng-readonly="{{f.field_readonly}}" ng-class="f.field_class"
+                                                        class="form-control col-lg-2" name="{{f.field_name}}"
+                                                        id="{{f.field_id}}" ng-value="f.field_value">
+                                                        {{f.field_value}}
+
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+
+
+                                    <!-- /.box-body -->
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div><!-- Modal ENd-->
+
+
+<!--booking summary edit Summary Modal-->
+<div id="roomEditFormModal" class="modal fade" role="dialog" style="background-color: rgba(235  ,230,235,0.6)">
+    <div class=" modal-lg modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span><b><i class="fa fa-book"></i> Room Booking Edit Form</b></span>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="  table-responsive">
+                    <form class="form-horizontal" data-ng-init="getForms(2)" id="room_booking_edit_form"
+                        action="{{frData[2].data[0][0].action+'/'+frData[2].data[0][0].form_id+'&'+frData[2].data[0][0].form_table_name}}"
+                        method="post">
+                        <div class="box-body ">
+
+
+                            <div class="form-horizontal ">
+                                <div class="panel panel-success">
+
+
+                                    <div class="panel-body">
+                                        <!--  <center>
+
+                                              <div class="col-lg-3 col-lg-offset-2">
+                                                  <img src="{{pData.data[0].photo_url}}"
+                                                       class="img-thumbnail img-responsive">
+                                              </div>
+                                          </center>-->
+                                        <div class="form-group col-lg-4" ng-repeat="f in frData[2].data[1]"
+                                            ng-hide="f.isHidden">
+                                            <label for="inputEmail3" ng-hide="f.isHidden"
+                                                ng-if="f.isHidden==0 || f.caption_name!=''"
+                                                class="col-sm-3 control-label">{{f.caption_name}}</label>
+
+                                            <div class="col-sm-10" ng-hide="f.isHidden">
+
+
+                                                <input
+                                                    ng-if="f.type_name!='textarea' && f.type_name!='select' && f.type_name!='button' && f.type_name!='submit' && f.type_name!='reset'"
+                                                    ng-hide="f.isHidden" type="{{f.type_name}}"
+                                                    maxlength="{{f.field_max_length}}"
+                                                    minlength="{{f.field_max_length}}" ng-required="{{f.required_id}}"
+                                                    ng-readonly="{{f.field_readonly}}" ng-class="f.field_class"
+                                                    class="form-control col-lg-2" name="{{f.field_name}}"
+                                                    id="{{f.field_id}}" ng-value="{{f.field_value}}"
+                                                    placeholder="{{f.field_placeholder}}">
+                                                <textarea ng-if="f.type_name=='textarea'" ng-hide="f.isHidden"
+                                                    maxlength="{{f.field_max_length}}"
+                                                    minlength="{{f.field_max_length}}" ng-required="{{f.required_id}}"
+                                                    ng-readonly="{{f.field_readonly}}" class="form-control col-lg-2"
+                                                    name="{{f.field_name}}" id="{{f.field_id}}"
+                                                    ng-value="{{f.field_value}}"
+                                                    placeholder="{{f.field_placeholder}}"></textarea>
+                                                <select ng-if="f.type_name=='select'" ng-hide="f.isHidden"
+                                                    data-ng-init="getL_fieldByname(f.l_field_name)"
+                                                    ng-value="{{f.field_value}}" ng-required="{{f.required_id}}"
+                                                    ng-readonly="{{f.field_readonly}}" class="form-control col-lg-2"
+                                                    name="{{f.field_name}}" ng-blur="gs(f.field_other_attibute)"
+                                                    id="{{f.field_id}}">
+                                                    <option ng-repeat="fo in froData.data" ng-value="{{fo.fid}}">
+                                                        {{fo.description}}
+                                                    </option>
+
+                                                </select>
+
+                                                <div ng-hide="f.isHidden"
+                                                    ng-if="f.type_name=='button' || f.type_name=='reset' || f.type_name=='submit'">
+
+                                                    <button type="{{f.type_name}}" maxlength="{{f.field_max_length}}"
+                                                        minlength="{{f.field_max_length}}"
+                                                        ng-required="{{f.required_id}}"
+                                                        ng-readonly="{{f.field_readonly}}" ng-class="f.field_class"
+                                                        class="form-control col-lg-2" name="{{f.field_name}}"
+                                                        id="{{f.field_id}}" ng-value="f.field_value">
+                                                        {{f.field_value}}
+
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+
+
+                                    <!-- /.box-body -->
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--Fine Modal-->
+<%
+include ../include/footer.ejs
+%>
+
+</html>
+
+<script src="../../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<script>
+
+    $('#tab_lang').DataTable();
+</script>
+<script src="../../dist/js/school_custom.js">
+
+</script>
+<% include ../include/globalization.ejs
+%>
+<!-------Globalization must be included at the end of Page---->

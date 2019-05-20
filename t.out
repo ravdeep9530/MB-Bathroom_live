@@ -1,0 +1,8 @@
+nohup: ignoring input
+No Email is Pending.list index out of range
+Traceback (most recent call last):
+  File "./generateReport.py", line 115, in <module>
+    s.run()
+  File "/usr/lib/python3.6/sched.py", line 152, in run
+    delayfunc(time - now)
+KeyboardInterrupt

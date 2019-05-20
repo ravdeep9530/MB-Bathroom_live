@@ -1,0 +1,53 @@
+{
+  "name": "mosiky",
+  "version": "1.0.0",
+  "description": "Music",
+  "main": "(index.js) server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "asyncawait": "^1.0.7",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "csurf": "^1.9.0",
+    "ejs": "^2.6.1",
+    "eslint": "^5.16.0",
+    "express": "^4.17.0",
+    "express-session": "^1.16.1",
+    "express-stormpath": "^4.0.0",
+    "formidable": "^1.2.1",
+    "forms": "^1.3.0",
+    "i18n-nodejs": "^3.0.0",
+    "mssql": "^4.3.0",
+    "mysql": "^2.17.1",
+    "mysqldump": "^2.2.1",
+    "nexmo": "^2.3.2",
+    "node-expat": "^2.3.17",
+    "nodemailer": "^4.6.8",
+    "nodemon": "^1.19.0",
+    "promise": "^8.0.2",
+    "pug": "^2.0.0-rc.4",
+    "random-number": "0.0.9",
+    "urlencode": "^1.1.0",
+    "utf8": "^3.0.0",
+    "utils": "^0.3.1",
+    "wkhtmltopdf": "^0.3.4",
+    "xml2json": "^0.11.2",
+    "xtend": "^4.0.1"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^1.8.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ravdeep9530/hotels.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ravdeep9530/hotels/issues"
+  },
+  "homepage": "https://github.com/ravdeep9530/hotels#readme"
+}

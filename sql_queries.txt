@@ -1,0 +1,8 @@
+SELECT * from TAGS t INNER join
+ TRACK_TAGS tt inner join TRACKS tr on tt.track_id=tr.track_id  where INSTR(tt.tags ,t.tag_name) and t.isActive=1 and tr.isActive=1 ORDER BY t.tag_name,tt.tempo,tt.beat
+
+
+
+
+ ->in sad(tag) tempo always go to down in rest go to up.
+ ->

@@ -1,0 +1,122 @@
+<html>
+<head>
+<title id="title"></title>
+
+      <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+      <!-- Bootstrap 3.3.7 -->
+
+    <link href="//fonts.googleapis.com/css?family=Mukta+Mahee:200,300,400,500,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="bower_components/css/font-awesome.css"  media="all">
+    <link rel="stylesheet" href="bower_components/css/style.css"  media="all">
+    <link rel="stylesheet" href="dist/css/style.css"  media="all">
+      <!-- Font Awesome -->
+      <!-- Ionicons -->
+
+      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+
+
+
+      <![endif]-->
+      <script src="ejs.js"></script>
+      <script src="ejs.min.js"></script>
+      <!-- Google Font -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+</head>
+<body ng-app="susApp"  ng-controller="loanCycleCtr">
+    <h1 class="title-agile text-center" id="logo_heading"></h1>
+    <div class="content-w3ls">
+        <div class="content-top-agile">
+            <h2>sign in</h2>
+        </div>
+        <div class="content-bottom">
+            <form action="/api/authenticate" method="post">
+                <div class="field-group">
+                    <span class="fa fa-user" aria-hidden="true"></span>
+                    <div class="wthree-field">
+                        <input  id="text1" name="email" type="email" value="" placeholder="username" required>
+                    </div>
+                </div>
+                <div class="field-group">
+                    <span class="fa fa-lock" aria-hidden="true"></span>
+                    <div class="wthree-field">
+                        <input name="pass" id="password" type="Password" placeholder="password" required>
+                    </div>
+                </div>
+                <!--<div class="field-group">
+                    <span class="fa fa-home" aria-hidden="true"></span>
+                    <div class="wthree-field" ng-init="getHotelsList()">
+                        <select required id="hlist" name="h_id">
+                            <option  class="form-control" selected value="-1">--Select One--</option>
+                        </select>
+                    </div>
+                </div>-->
+                <ul class="list-login">
+                    <li class="switch-agileits">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                            keep me signed in
+                        </label>
+                    </li>
+                    <li>
+                        <a href="#" id="forget_pass" class="text-right" >forgot password?</a>
+                    </li>
+                    <li class="clearfix"></li>
+                </ul>
+                <div class="wthree-field">
+                    <input id="saveForm" name="saveForm" type="submit" value="sign in" />
+                </div>
+            </form>
+        </div>
+    </div>
+   <div class="copyright text-center">
+        <p id="footer_line">
+        </p>
+    </div>
+
+</body>
+<!-- //Body -->
+
+  <% include ../include/globalization.ejs
+    %>
+<% include ../include/toast.ejs
+    %><!-------Globalization must be included at the end of Page---->
+
+<!-- jQuery 3 -->
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script >
+
+
+function langData() {
+
+    $.ajax({
+            type: "GET",
+            url: "/getHotelsList",
+            contentType: 'application/json',
+            success: function (result) {
+                //alert('d');
+               // $('#hlist').empty();
+                //alert(JSON.stringify(result));
+                for (var i = 0; i < result["data"].length; i++) {
+
+                    $('#hlist').append('<option value="'+result["data"][i].location_id+'">'+result["data"][i].hotel_name+'</option>');
+
+                }
+                hideLoad();
+
+
+
+
+            }
+        }
+    );
+
+}
+langData();
+</script>
+          </html>

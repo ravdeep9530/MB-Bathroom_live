@@ -1,0 +1,11 @@
+<div  id="snackbar"></div>
+<script>
+     function toast(t) {
+
+        var x = document.getElementById("snackbar");
+        x.innerHTML=t;
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+    }
+
+</script>

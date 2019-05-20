@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Type in 23 Indian languages in Unicode using basic Pramukh Type Pad</title>
+		<meta name="Description" content="Basic Pramukh Type Pad to easily type in Assamese, Bengali, Bodo, Dogri, Gujarati, Hindi, Kannada, Konkani, Maithili, Malayalam, Manipuri, Marathi, Meitei (Manipuri), Nepali, Odia, Punjabi, Sanskrit, Santali (Ol Chiki), Sindhi, Sora, Tamil and Telugu" />
+		<meta name="keywords" content="Indian, Language, Assamese, Bengali, Manipuri, Bodo, Dogri, Gujarati, Hindi, Kannada, Konkani, Maithili, Malayalam, Meitei, Manipuri, Marathi, Nepali, Odia, Punjabi, Sanskrit, Santali, Ol Chiki, Sindhi, Sora, Tamil, Telugu, Type pad, Unicode, transliteration " />
+		<meta name="copyright" content="Copyright © 2005-2018 Vishal Monpara" />
+		<link rel="shortcut icon" href="img/pramukhime.ico" type="image/x-icon"/>
+		<link type="text/css" href="css/bootstrap.min.css" rel="Stylesheet" />
+		<link type="text/css" href="css/default.css" rel="Stylesheet" />
+		<link type="text/css" href="css/pramukhindic.css" rel="Stylesheet" />
+		<link type="text/css" href="css/pramukhtypepad.css" rel="Stylesheet" />
+	</head>
+	<body>
+	<div class="container">
+		<div class="row pageheader">
+			<div class="col-xs-2 col-sm-6">
+				<img src="img/pramukhime48.png" alt="logo"/>
+				<h1 class="visible-sm-inline visible-md-inline visible-lg-inline">Pramukh Type Pad
+				</h1>
+			</div>
+			<div class="col-xs-10  col-sm-6 text-right">
+				<a href="http://www.vishalon.net/contact-me" title="Send feedback to Vishal Monpara" target="_blank">
+					<img src="img/email32.png" alt="Email" />
+				</a>
+				&nbsp;
+				<a href="https://www.facebook.com/pages/PramukhIME-Pramukh-Type-Pad/164572296943090" title="Like us on Facebook" target="_blank">
+					<img src="img/facebook32.png" alt="Facebook" />
+				</a>
+				&nbsp;
+				<a href="https://plus.google.com/111356465186782859926/" title="Add us to your circle on Google +" target="_blank">
+					<img src="img/gplus32.png" alt="Google Plus" />
+				</a>
+				&nbsp;
+				<a href="https://twitter.com/PramukhIME" title="Follow us on Twitter" target="_blank">
+					<img src="img/twitter32.png" alt="Twitter" />
+				</a>
+				&nbsp;
+				<a href="https://www.youtube.com/channel/UC8ZjL0aY2KMKtIkO1eIC_7g" title="Youtube Channel" target="_blank">
+					<img src="img/youtube32.png" alt="Youtube Channel" />
+				</a>
+			</div>
+		</div>
+		<div class="row row-top10">
+			<div class="col-xs-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<select id="drpLanguage" name="drpLanguage" title="Choose Language">
+							<option value="pramukhindic:assamese">Assamese</option>
+							<option value="pramukhindic:bengali">Bengali</option>
+							<option value="pramukhindic:bodo">Bodo</option>
+							<option value="pramukhindic:dogri">Dogri</option>
+							<option value="pramukhindic:gujarati">Gujarati</option>
+							<option value="pramukhindic:hindi">Hindi</option>
+							<option value="pramukhindic:kannada">Kannada</option>
+							<option value="pramukhindic:kashmiri">Kashmiri</option>
+							<option value="pramukhindic:konkani">Konkani</option>
+							<option value="pramukhindic:maithili">Maithili</option>
+							<option value="pramukhindic:malayalam">Malayalam</option>
+							<option value="pramukhindic:manipuri">Manipuri</option>
+							<option value="pramukhindic:marathi">Marathi</option>
+							<option value="pramukhindic:marathimodi">Marathi (Modi)</option>
+							<option value="pramukhindic:meitei">Meitei (Manipuri)</option>
+							<option value="pramukhindic:nepali">Nepali</option>
+							<option value="pramukhindic:odia">Odia</option>
+							<option value="pramukhindic:punjabi">Punjabi</option>
+							<option value="pramukhindic:sanskrit">Sanskrit</option>
+							<option value="pramukhindic:santali">Santali</option>
+							<option value="pramukhindic:sindhi">Sindhi</option>
+							<option value="pramukhindic:sora">Sora</option>
+							<option value="pramukhindic:tamil">Tamil</option>
+							<option value="pramukhindic:telugu">Telugu</option>
+							<option value="pramukhime:english" selected="selected">English (F9)</option>
+						</select>
+						Press F9 to toggle between current and last selected language (Pro Feature)
+					</div>
+					<div class="panel-body">
+						<textarea id="typingarea" name="typingarea" rows="5" cols="64" class="bigger" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" autosuggest="off"></textarea>
+						<fieldset id="settingssection" class="hidden">
+							<legend>Settings</legend>
+							<div class="checkbox-inline" id="settingsdigitinenglish">
+								<label><input type="checkbox" id="digitinenglish" />Digit In English (for all languages)</label>
+							</div>
+							<div class="form-group" id="settingstypingrule">
+								<label for="typingrules">Advanced Typing Rule</label>
+								<select id="typingrules" title="Select Typing Rule">
+									<option value="panchamakshar">Panchamakshar</option>
+									<option value="anusvar">Anusvar</option>
+								</select>
+							</div>
+						</fieldset>
+						<fieldset id="helpsection" class="hidden">
+							<legend>Quick Help</legend>
+							<a target="_blank" id="detailedhelplink">View Detailed Help</a>
+							<br />
+							<img src="img/pramukhime-english.png" id="quickhelpimg" alt="character map" />
+							
+						</fieldset>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h3>Also available as</h3>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-xs-12 col-sm-4">
+				<a href="https://play.google.com/store/apps/details?id=com.pramukhime.android.indic" target="_blank">
+					<img src="img/gplay48.png" alt="Android App" /> <br />
+					PramukhIME for Android&trade;
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<a href="http://www.vishalon.net/pramukhime/windows" target="_blank">
+					<img src="img/windows48.png" alt="Desktop Application" /> <br />
+					Desktop application
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<a href="https://addons.mozilla.org/en-US/firefox/addon/pramukh-type-pad/" target="_blank">
+					<img src="img/firefox48.png" alt="Firefox Addon" /> <br />
+					Firefox Addon
+				</a>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-xs-12 col-sm-4">
+				<a href="http://www.vishalon.net/pramukhime/wordpress-plugin" target="_blank">
+					<img src="img/wordpress48.png" alt="Wordpress Plugin" /> <br />
+					Wordpress Plugin
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<a href="http://www.vishalon.net/pramukhime/joomla-extension" target="_blank">
+					<img src="img/joomla48.png" alt="Joomla Extension" /> <br />
+					Joomla Extension
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<a href="http://www.vishalon.net/pramukhime/drupal-module" target="_blank">
+					<img src="img/drupal48.png" alt="Drupal Module" /> <br />
+					Drupal Module
+				</a>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-xs-12 col-sm-4">
+				<a href="http://www.vishalon.net/pramukhime/tinymce-plugin" target="_blank">
+					<img src="img/tinymce48.png" alt="TinyMCE Plugin" /> <br />
+					TinyMCE Plugin
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<a href="http://www.vishalon.net/pramukhime/ckeditor-plugin" target="_blank">
+					<img src="img/ckeditor48.png" alt="CKEditor Plugin" /> <br />
+					CKEditor Plugin
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-4">
+				<a href="http://www.vishalon.net/pramukhime/javascript-library" target="_blank">
+					<img src="img/javascript48.png" alt="Javascript Library" /> <br />
+					Javascript Library
+				</a>
+			</div>
+		</div>
+		<div class="row row-top10">
+			<div class="col-xs-12">
+			Gettting inspiration and blessings from <a href="http://www.pramukhswami.org" target="_blank">HH Pramukh Swami Maharaj</a>, Vishal Monpara has dedicated more than 3775 hours from January 2005 till February 2018 to create free utilities for typing in Indian languages.
+			</div>
+		</div>
+		
+		<div class="row row-top10">
+			<div class="col-xs-12">
+				<small>Google Play and the Google Play logo are trademarks of Google Inc.<br />
+				Windows, Wordpress, Firefox, TinyMCE and CKEditor logo are the trademarks of their respective owners</small>
+			</div>
+		</div>
+		<div class="row pagefooter">
+			<div class="col-xs-12 text-center">
+				Copyright &copy; 2005-2018 <a href="http://www.vishalon.net" target="_blank" title="Vishal Monpara's Website">Vishal Monpara</a> | Version 4.0.1 
+		| Dedicated to <a href="http://www.pramukhswami.org" title="HH Pramukh Swami Maharaj" target="_blank">HH Pramukh Swami Maharaj</a>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/pramukhime.js"></script>
+	<script type="text/javascript" src="js/pramukhindic.js"></script>
+	<script type="text/javascript" src="js/pramukhindic-i18n.js"></script>
+		
+	<script type="text/javascript">
+		function languageChangeCallback(data) {
+			if (data.language === 'english') {
+				// selected language is english so hide settings and help section
+				document.getElementById('settingssection').className = "hidden";
+				document.getElementById('helpsection').className = "hidden";
+			} else {
+				// Show settings and help section
+				document.getElementById('settingssection').className = "";
+				document.getElementById('helpsection').className = "";
+
+				// Show quick help
+				document.getElementById('quickhelpimg').src = "img/" + pramukhIME.getHelpImage();
+				// Change detailed help link
+				document.getElementById('detailedhelplink').href = "help/" + pramukhIME.getHelp();
+
+				// Get setting for the currently selected language
+				var settings = pramukhIME.getSetting();
+				// set checkbox
+				document.getElementById('digitinenglish').checked = settings[0].digitInEnglish;
+
+				if (settings[1].advancedRuleValues.length === 0) {
+					// hide the advanced rule section
+					document.getElementById('settingstypingrule').className = "hidden";
+				} else {
+					// Show the advanced rule section
+					document.getElementById('settingstypingrule').className = "";
+
+					// set typing rules
+					setDropdownValue('typingrules', settings[1].advancedRule);
+					
+				}
+
+			}
+			// Set the value in the language drop down list
+			setDropdownValue('drpLanguage', data.kb + ':' + data.language);
+			updateShortcutKey('drpLanguage', data.lastLanguage, data.lastKb, ' (F9)'); // contains space character in shortcut text
+		}
+
+		function updateShortcutKey(elem, lang, kb, shortcut) {
+			var dd = document.getElementById(elem), len = dd.options.length, i = 0, items, kblang = kb + ':' + lang;
+			for (; i < len; i++) {
+				if (dd.options[i].value === kblang) {
+					dd.options[i].text = pramukhime_lang[kb][lang] + shortcut;
+				} else {
+					items = dd.options[i].value.split(':');
+					dd.options[i].text = pramukhime_lang[items[0]][items[1]];
+				}
+			}
+		}
+		
+		function setDropdownValue(elem, value) {
+			var dd = document.getElementById(elem), len = dd.options.length, i = 0;
+			for (; i < len; i++) {
+				if (dd.options[i].value === value) {
+					dd.selectedIndex = i;
+					break;
+				}
+			}
+		}
+
+		// Called when the Digit In English checkbox value is changed
+		function digitInEnglishChanged() {
+			var lang = pramukhIME.getLanguage();
+			lang.language = 'all';
+			lang['digitInEnglish'] = this.checked;
+			// pass array of object for this function
+			pramukhIME.setSettings([lang]);
+		}
+		// Called when the Typing Rule drop down value is changed
+		function typingRuleChanged() {
+			var lang = pramukhIME.getLanguage();
+			
+			lang['advancedRule'] = this.options[this.selectedIndex].value;
+			// pass array of object for this function
+			pramukhIME.setSettings([lang]);
+		}
+
+		function languageDropdownChanged() {
+			var newLanguage = this.options[this.selectedIndex].value;
+			if (!newLanguage || newLanguage === "")
+				newLanguage = 'pramukhime:english';
+			// set new script
+			var lang = newLanguage.split(':');
+			pramukhIME.setLanguage(lang[1], lang[0]);
+		}
+
+		document.getElementById('digitinenglish').onclick = digitInEnglishChanged;
+		document.getElementById('typingrules').onchange = typingRuleChanged;
+		document.getElementById('drpLanguage').onchange = languageDropdownChanged;
+
+
+		// focus on textbox
+		document.getElementById('typingarea').focus();
+		// Setup pramukhIME
+		
+		// Add the keyboard plugin
+		pramukhIME.addKeyboard("PramukhIndic");
+		
+		// Register call back (PRO VERSION ONLY)
+		//pramukhIME.on('languagechange', languageChangeCallback);
+		
+		// Enable on whole page
+		pramukhIME.enable();
+
+	</script>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<html>
+<head>
+    <% include ../include/header.ejs
+    %>
+
+</head>
+<!-- Main content -->
+<body>
+<div class="content-wrapper">
+    <section class="content">
+    <!-- Small boxes (Stat box) -->
+    <div class="row">
+        <div class=" col-lg-3">
+            <div class=" panel-danger panel">
+                <div class="panel-heading" >
+                    <h4><b>Temp Menu</b></h4>
+                </div>
+                <div class=" panel-body">
+                   <center> <button onclick='getMusic()' class="btn btn-lg btn-info">Call For First Page</button>
+                       </center>
+                </div>
+            </div>
+        </div>
+        <div class=" col-lg-4">
+            <div class=" panel-success panel">
+                <div class="panel-heading" >
+                    <h4><b>Music</b></h4>
+                </div>
+                <div class=" panel-body" style="height: 500px; overflow: auto; overflow-y: scroll;">                    <div id="tracks"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+</div>
+</body>
+<%
+include ../include/footer.ejs
+%>
+</html>
+<script>
+    function getMusic() {
+        $.ajax({
+            type: 'GET',
+            url: '/firstCall',
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+
+               // alert(JSON.stringify(data));
+                var lastCat='';
+                //$('#track_upload_panel').fadeIn(1000);
+                $('#tracks').empty();
+                $('#tracks').hide();
+                for(var i=0;i<data.data.length;i++)
+                {
+                    if(lastCat=='' || lastCat!=data["data"][i].tag_name){
+                        lastCat=data["data"][i].tag_name;
+                        $('#tracks').append('<div class="alert alert-danger"><h4>'+data["data"][i].tag_name+'</h4></div>');
+                    }
+                    $('#tracks').append('<p><i class="fa fa-music"></i> '+data["data"][i].track_name+'</p>');
+                }
+                toast("Tracks Load Successfully.");
+
+
+ $('#tracks').fadeIn(100);
+            }
+
+        });
+    }
+</script>
