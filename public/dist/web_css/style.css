@@ -8,6 +8,8 @@ body{
 	margin:0;
 font-family: 'Lato', sans-serif;
 	background: #fff;
+	
+	zoom:90%;
 }
 body a{
 	-webkit-transition: 0.5s all;
