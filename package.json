@@ -27,7 +27,7 @@
     "mysqldump": "^2.2.1",
     "nexmo": "^2.3.2",
     "node-expat": "^2.3.17",
-    "nodemailer": "^4.6.8",
+    "nodemailer": "^6.4.16",
     "nodemon": "^1.19.0",
     "promise": "^8.0.2",
     "pug": "^2.0.0-rc.4",
